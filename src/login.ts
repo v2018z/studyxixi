@@ -19,7 +19,7 @@ export const onLogin = async () => {
 	});
 
 	const observer = new MutationObserver(() => {
-		const text = `打开APP扫它👆`
+		const text = `希希同学，打开APP扫它👆`
 		const $loginText = document.querySelector('.ddlogintext');
 		$loginText.innerHTML = text;
 		($loginText as HTMLElement).style.color = '#fff';

@@ -5,7 +5,7 @@ import { delay } from './utils';
 import { showScoreDetail } from './score';
 
 export const log = (event: Event, message?: any, ...optionalParams: any[]) => {
-	console.log(message);
+	console.log(message, ...optionalParams);
 }
 
 export const refreshMenu = (event: Event, rate: any) => {
@@ -20,69 +20,53 @@ export const refreshMenu = (event: Event, rate: any) => {
 	}
 }
 
-const views: BrowserView[] = [];
-
-const getNewViewBounds = () => {
-	const lastView = views[views.length - 1];
-	if (!lastView) {
-		return { x: 0, y: 0 };
-	}
-	let { x, y } = lastView.getBounds();
-	if (x >= 600) {
-		// 换行
-		y += 300;
-		x = 0;
-	} else {
-		x += 300;
-	}
-	return { x, y};
-}
-
 const createBrowerView = (options: any): BrowserView => {
 	const view = new BrowserView({
 		webPreferences: {
 			// 渲染线程使用node
-			nodeIntegration: true,
+			nodeIntegration: false,
 			// 禁用同源策略 (通常用来测试网站)
 			webSecurity: true,
 			preload: options.preload,
-			webviewTag:true
 		}
 	});
+	
 	win.addBrowserView(view);
-	const { x, y } = getNewViewBounds();
-	view.setBounds({ x, y, width: 300, height: 300 });
+	view.setBounds({ x: options.x, y: 0, width: 500, height: 600 });
 	view.webContents.loadURL(options.url);
-	views.push(view);
 	return view;
 }
 
 export const createArticleView = async (event: Event, options: any) => {
 	const view = createBrowerView({
 		...options,
+		x: 0,
 		url: options.url,
 		preload: path.join(__dirname, './articles.js'),
 		lifeTime: options.lifeTime || 130000,
 	});
+	win.setBackgroundColor('#6f4f4f');
 	
 	await delay(options.lifeTime);
 	view.destroy();
 	win.removeBrowserView(view);
 
-	win.webContents.send('show-score');
+	win.webContents.send('watch-article');
 }
 
 export const createVideoView = async (event: Event, options: any) => {
 	const view = createBrowerView({
 		...options,
+		x: 500,
 		url: options.url,
-		preload: path.join(__dirname, './articles.js'),
+		preload: path.join(__dirname, './videos.js'),
 		lifeTime: options.lifeTime || 190000,
 	});
+	win.setBackgroundColor('#c8e1ff');
 	
 	await delay(options.lifeTime);
 	view.destroy();
 	win.removeBrowserView(view);
 
-	win.webContents.send('show-score');
+	win.webContents.send('watch-video');
 }

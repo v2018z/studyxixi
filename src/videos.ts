@@ -1,8 +1,4 @@
-// import './login';
-import { domContentLoaded } from './utils';
-import { onLogin, isLoggedIn } from './login';
-import { loginUrl, homeUrl } from './urls';
-import { getUsableRateScoreTasks, showScoreDetail } from './score';
+import { domContentLoaded, getRandomNumberBetween } from './utils';
 import { ipcRenderer } from 'electron';
 
 /**
@@ -10,7 +6,10 @@ import { ipcRenderer } from 'electron';
  */
 
 domContentLoaded(async () => {
-  console.log('页面加载完成');
-    
-	ipcRenderer.send('log', '看视频');
+	ipcRenderer.send('log', '开始看视频');
+
+	window.scrollBy({
+		top: document.body.clientHeight / 2 + getRandomNumberBetween(-20, 20),
+		behavior: 'smooth',
+	});
 });

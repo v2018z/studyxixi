@@ -1,8 +1,4 @@
-// import './login';
-import { domContentLoaded, getRandomNumberBetween } from './utils';
-import { onLogin, isLoggedIn } from './login';
-import { loginUrl, homeUrl } from './urls';
-import { getUsableRateScoreTasks, showScoreDetail } from './score';
+import { domContentLoaded, getRandomNumberBetween, delay } from './utils';
 import { ipcRenderer } from 'electron';
 
 /**
@@ -11,15 +7,15 @@ import { ipcRenderer } from 'electron';
 
 domContentLoaded(async () => {
 	console.log('页面加载完成');
-
+	ipcRenderer.send('log', '开始看文章');
 	window.scrollBy({
-		top: window.innerHeight + getRandomNumberBetween(-20, 20),
+		top: document.body.clientHeight / 2 + getRandomNumberBetween(-20, 20),
 		behavior: 'smooth',
 	});
 
 	const timer = setInterval(() => {
 		window.scrollBy({
-			top: getRandomNumberBetween(-5, 10),
+			top: getRandomNumberBetween(-15, 15),
 			behavior: 'smooth',
 		});
 	}, 1000);

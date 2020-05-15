@@ -17,7 +17,7 @@ const createWindow = () => {
 			// 禁用同源策略 (通常用来测试网站)
 			webSecurity: true,
 			preload: path.join(__dirname, './preload.js'),
-			webviewTag:true
+			backgroundThrottling: false,
 		}
 	});
 
@@ -39,7 +39,7 @@ const createWindow = () => {
 	});
 
 	// 静音
-	win.webContents.setAudioMuted(true);
+	// win.webContents.audioMuted = true;
 
 	// 移除菜单栏
 	Menu.setApplicationMenu(Menu.buildFromTemplate([]));

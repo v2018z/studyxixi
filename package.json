@@ -7,10 +7,12 @@
     "build": "tsc",
     "watch": "tsc -w",
     "lint": "tslint -c tslint.json -p tsconfig.json",
-    "start": "chcp 65001 && npm run build && electron ./dist/main.js"
+    "start": "chcp 65001 && npm run build && electron ./dist/main.js",
+    "build:xixi": "npm run build && electron-packager ./dist/main.js 希希的学习强国1 --electron-version=8.2.5 --win --arch=x64 --overwrite --ignore=node_modules --ignore=package-lock.json"
   },
   "devDependencies": {
-    "electron": "^8.2.5",
+    "electron": "8.2.5",
+    "electron-packager": "^14.2.1",
     "path": "^0.12.7",
     "tslint": "^6.1.2",
     "typescript": "^3.9.2"
