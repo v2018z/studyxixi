@@ -4,6 +4,15 @@
   "main": "main.js",
   "license": "MIT",
   "scripts": {
-    "dev": "electron ."
+    "build": "tsc",
+    "watch": "tsc -w",
+    "lint": "tslint -c tslint.json -p tsconfig.json",
+    "start": "chcp 65001 && npm run build && electron ./dist/main.js"
+  },
+  "devDependencies": {
+    "electron": "^8.2.5",
+    "path": "^0.12.7",
+    "tslint": "^6.1.2",
+    "typescript": "^3.9.2"
   }
 }
