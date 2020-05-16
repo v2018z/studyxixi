@@ -1,20 +1,24 @@
 {
   "name": "sdudyxixi",
   "version": "1.0.0",
-  "main": "main.js",
+  "main": "./dist/main.js",
   "license": "MIT",
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "start": "chcp 65001 && npm run build && electron ./dist/main.js",
-    "build:xixi": "npm run build && electron-packager ./dist/main.js 希希的学习强国1 --electron-version=8.2.5 --win --arch=x64 --overwrite --ignore=node_modules --ignore=package-lock.json"
+    "build:xixi": "npm run build && electron-packager . 希希的学习强国 --electron-version=8.2.5 --win --arch=x64 --overwrite --ignore=node_modules --ignore=package-lock.json"
   },
   "devDependencies": {
+    "@types/jquery": "^3.3.38",
     "electron": "8.2.5",
     "electron-packager": "^14.2.1",
     "path": "^0.12.7",
     "tslint": "^6.1.2",
     "typescript": "^3.9.2"
+  },
+  "dependencies": {
+    "jquery": "^3.5.1"
   }
 }

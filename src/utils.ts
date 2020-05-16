@@ -7,12 +7,9 @@ export const delay = (time: number) => {
 }
 
 export const domContentLoaded = (callback = () => {}) => {
-	if ('loading' === document.readyState) {
-		return new Promise((resolve) => {
-			document.addEventListener('DOMContentLoaded', () => resolve(callback()));
-		});
-	}
-	callback();
+	document.addEventListener('DOMContentLoaded', () => {
+		callback();
+	});
 }
 
 export const getRandomElement = (elements: any[]) => {

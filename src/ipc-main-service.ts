@@ -23,7 +23,7 @@ export const refreshMenu = (event: Event, rate: any) => {
 const createBrowerView = (options: any): BrowserView => {
 	const view = new BrowserView({
 		webPreferences: {
-			// 渲染线程使用node
+			// 渲染线程禁止使用node
 			nodeIntegration: false,
 			// 禁用同源策略 (通常用来测试网站)
 			webSecurity: true,
@@ -34,6 +34,7 @@ const createBrowerView = (options: any): BrowserView => {
 	win.addBrowserView(view);
 	view.setBounds({ x: options.x, y: 0, width: 500, height: 600 });
 	view.webContents.loadURL(options.url);
+	view.webContents.audioMuted = true;
 	return view;
 }
 
@@ -43,7 +44,6 @@ export const createArticleView = async (event: Event, options: any) => {
 		x: 0,
 		url: options.url,
 		preload: path.join(__dirname, './articles.js'),
-		lifeTime: options.lifeTime || 130000,
 	});
 	win.setBackgroundColor('#6f4f4f');
 	
@@ -60,13 +60,12 @@ export const createVideoView = async (event: Event, options: any) => {
 		x: 500,
 		url: options.url,
 		preload: path.join(__dirname, './videos.js'),
-		lifeTime: options.lifeTime || 190000,
 	});
 	win.setBackgroundColor('#c8e1ff');
-	
-	await delay(options.lifeTime);
-	view.destroy();
-	win.removeBrowserView(view);
+	view.webContents.openDevTools();
 
+}
+
+export const watchVideo = async (event: Event) => {
 	win.webContents.send('watch-video');
 }

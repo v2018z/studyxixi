@@ -33,9 +33,6 @@ domContentLoaded(async () => {
 	const articleChannels = await getArticleChannels();
 	const videoChannels = await getVideoChannels();
 
-	let articleTaskDone = false;
-	let videoTaskDone = false;
-
 	const circleArticleTask = async () => {
 		const [watchdArticleTask, , watchArticleTimeTask, ,] = await getUsableRateScoreTasks();
 
@@ -48,14 +45,10 @@ domContentLoaded(async () => {
 			});
 			return;
 		}
-		articleTaskDone = true;
 	}
 
 	const circleVideoTask = async () => {
 		const [, watchVideoTask, ,watchVideoTimeTask] = await getUsableRateScoreTasks();
-
-		console.log(watchVideoTask);
-		console.log(watchVideoTimeTask);
 
 		if (!isDone(watchVideoTask) || !isDone(watchVideoTimeTask)) {
 			const channel = getRandomElement(videoChannels);
@@ -66,7 +59,6 @@ domContentLoaded(async () => {
 			});
 			return;
 		}
-		videoTaskDone = true;
 	}
 
 	const cicleTaks = async () => {
@@ -78,13 +70,17 @@ domContentLoaded(async () => {
 		checkIsOver();
 	}
 
-	const checkIsOver = () => {
-		if (articleTaskDone && videoTaskDone) {
-			const n = new Notification('温馨提示', {
-			body: '希希同学，今日积分已经满啦',
-			silent: false,
-			icon: path.join(__dirname, '../smile.jpg'),
-		});
+	const checkIsOver = async () => {
+		const [watchdArticleTask, watchVideoTask, watchArticleTimeTask, watchVideoTimeTask] = await getUsableRateScoreTasks();
+		if (isDone(watchdArticleTask) 
+			&& isDone(watchVideoTask) 
+			&& isDone(watchArticleTimeTask) 
+			&& isDone(watchVideoTimeTask)) {
+				const n = new Notification('温馨提示', {
+				body: '希希同学，今日积分已经满啦',
+				silent: false,
+				icon: 'https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture',
+			});
 		}
 	}
 	
@@ -95,10 +91,8 @@ domContentLoaded(async () => {
 		checkIsOver();
 	});
 
-	ipcRenderer.on('watch-video', async () => {
+	ipcRenderer.on('watch-video', () => {
 		showScoreDetail();
-		await circleVideoTask();
-
 		checkIsOver();
 	});
 

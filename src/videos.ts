@@ -1,15 +1,61 @@
-import { domContentLoaded, getRandomNumberBetween } from './utils';
+import { domContentLoaded, getRandomNumberBetween, getRandomElement, delay } from './utils';
 import { ipcRenderer } from 'electron';
+import { getVideoChannels } from './channels';
 
 /**
  * 每个页面跳转都会执行哦
  */
-
 domContentLoaded(async () => {
 	ipcRenderer.send('log', '开始看视频');
+
+	const videoChannels = await getVideoChannels();
+
+	await delay(5000);
 
 	window.scrollBy({
 		top: document.body.clientHeight / 2 + getRandomNumberBetween(-20, 20),
 		behavior: 'smooth',
 	});
+
+	const timer = setInterval(() => {
+		window.scrollBy({
+			top: getRandomNumberBetween(-15, 15),
+			behavior: 'smooth',
+		});
+	}, 1000);
+
+	let currenVideo: any = null;
+
+	const refreshLoad = () => {
+		ipcRenderer.send('watch-video');
+		const channel = getRandomElement(videoChannels);
+		location.href = channel.url;
+	}
+
+	const observer = new MutationObserver(() => {
+		const $video = document.querySelector('video');
+
+		if ($video == null || currenVideo != null ) return;
+
+		currenVideo = $video;
+
+		$video.addEventListener('durationchange', async () => {
+			ipcRenderer.send('log', '视频长度: ', $video.duration);
+			const duration = $video.duration;
+			const minute = Math.floor(duration / 60);
+			if (minute < 3) {
+				refreshLoad();
+			}
+		});
+
+		$video.addEventListener('ended', async() => {
+			refreshLoad();
+		});
+
+		$video.addEventListener('error', async() => {
+			refreshLoad();
+		});
+	});
+
+	observer.observe(document.querySelector('body'), { attributes: true, childList: true, subtree: true });
 });

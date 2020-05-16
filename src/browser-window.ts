@@ -20,9 +20,7 @@ const createWindow = () => {
 			backgroundThrottling: false,
 		}
 	});
-
-	win.webContents.openDevTools();
-
+	
 	win.loadURL(homeUrl);
 
 	win.once('ready-to-show', () => {
@@ -39,7 +37,9 @@ const createWindow = () => {
 	});
 
 	// 静音
-	// win.webContents.audioMuted = true;
+	win.webContents.audioMuted = true;
+
+	win.webContents.openDevTools();
 
 	// 移除菜单栏
 	Menu.setApplicationMenu(Menu.buildFromTemplate([]));

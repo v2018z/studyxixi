@@ -6,8 +6,10 @@ import { ipcRenderer } from 'electron';
  */
 
 domContentLoaded(async () => {
-	console.log('页面加载完成');
 	ipcRenderer.send('log', '开始看文章');
+
+	await delay(2000);
+
 	window.scrollBy({
 		top: document.body.clientHeight / 2 + getRandomNumberBetween(-20, 20),
 		behavior: 'smooth',
