@@ -1,6 +1,7 @@
 import { BrowserWindow, Menu, app } from 'electron';
 import * as path from 'path';
 import { homeUrl } from './urls';
+import { config } from './config';
 
 let win: BrowserWindow = null;
 
@@ -37,11 +38,15 @@ const createWindow = () => {
 		win.webContents.loadURL(url);
 	});
 
+	if (config.openDevTools) {
+		win.webContents.openDevTools();
+	}
+
 	// 静音
 	win.webContents.audioMuted = true;
 
 	// 移除菜单栏
-	Menu.setApplicationMenu(Menu.buildFromTemplate([]));
+	Menu.setApplicationMenu(Menu.buildFromTemplate([{ label: '加载中...'}]));
 }
 
 app.whenReady().then(createWindow);

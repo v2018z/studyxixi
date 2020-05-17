@@ -3,6 +3,7 @@ import { win } from './browser-window';
 import * as path from 'path';
 import { delay } from './utils';
 import { showScoreDetail } from './score';
+import { config } from './config';
 
 export const log = (event: Event, message?: any, ...optionalParams: any[]) => {
 	console.log(message, ...optionalParams);
@@ -21,11 +22,11 @@ export const refreshMenu = (event: Event, rate: any) => {
 }
 
 const createBrowerView = (options: any): BrowserWindow => {
-	const view = new BrowserWindow({
+	let view = new BrowserWindow({
 		parent: win,
 		closable: false,
 		x: win.getBounds().x + options.x, 
-		y: win.getBounds().y, 
+		y: win.getBounds().y + 120, 
 		width: 500, 
 		height: 600,
 		show: false,
@@ -40,6 +41,16 @@ const createBrowerView = (options: any): BrowserWindow => {
 	});
 	view.webContents.loadURL(options.url);
 	view.webContents.audioMuted = true;
+
+	view.once('ready-to-show', () => {
+		if ( config.showTaskWindow) {
+			view.show();
+		}
+	});
+
+	view.on('closed', () => {
+		view = null;
+	})
 	return view;
 }
 
@@ -50,31 +61,50 @@ export const createArticleView = async (event: Event, options: any) => {
 		url: options.url,
 		preload: path.join(__dirname, './articles.js'),
 	});
-	win.setBackgroundColor('#6f4f4f');
-	
-	await delay(options.lifeTime);
-	view.destroy();
-
-	win.webContents.send('watch-article');
+	view.setBackgroundColor('#6f4f4f');
 }
 
 export const createVideoView = async (event: Event, options: any) => {
 	const view = createBrowerView({
 		...options,
-		x: 500,
+		x: 250,
 		url: options.url,
 		preload: path.join(__dirname, './videos.js'),
 	});
-	win.setBackgroundColor('#c8e1ff');
+	view.setBackgroundColor('#c8e1ff');
 }
 
-export const watchVideo = async (event: Event) => {
+export const createFastVideoView = async (event: Event, options: any) => {
+	const view = createBrowerView({
+		...options,
+		x: 500,
+		url: options.url,
+		preload: path.join(__dirname, './videos-fast.js'),
+	});
+	view.setBackgroundColor('#c8e1ff');
+}
+
+export const watchVideo = async (event?: Event) => {
 	win.webContents.send('watch-video');
+}
+
+export const watchArticle = async (event?: Event) => {
+	win.webContents.send('watch-article');
 }
 
 export const closeTask = () => {
 	win.getChildWindows().forEach((view: BrowserWindow) => {
 		view.destroy();
 	});
+}
 
+export const toggleTaskWindow = (isShow: boolean) => {
+	win.getChildWindows().forEach((view: BrowserWindow) => {
+		console.log(isShow);
+		if (isShow) {
+			view.show();
+		} else {
+			view.hide();
+		}
+	})
 }

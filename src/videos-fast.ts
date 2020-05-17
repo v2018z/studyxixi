@@ -1,0 +1,57 @@
+import { domContentLoaded, getRandomNumberBetween, getRandomElement, delay } from './utils';
+import { ipcRenderer } from 'electron';
+
+/**
+ * 每个页面跳转都会执行哦
+ */
+domContentLoaded(async () => {
+	ipcRenderer.send('log', '开始快速看视频');
+
+	const videoChannels = await ipcRenderer.invoke('get-video-channels');
+
+	let currenVideo: any = null;
+
+	const refreshLoad = () => {
+		ipcRenderer.send('watch-video');
+		const channel = getRandomElement(videoChannels);
+		ipcRenderer.send('log', '快速视频地址：', channel.url);
+		location.href = channel.url || location.href;
+	}
+
+	const observer = new MutationObserver(() => {
+		const $video = document.querySelector('video');
+
+        if ($video == null || currenVideo != null ) return;
+        
+        window.scrollBy({
+            top: document.body.clientHeight / 2 + getRandomNumberBetween(-20, 20),
+            behavior: 'smooth',
+        });
+    
+        const timer = setInterval(() => {
+            window.scrollBy({
+                top: getRandomNumberBetween(-15, 15),
+                behavior: 'smooth',
+            });
+        }, 1000);
+
+        currenVideo = $video;
+
+		$video.addEventListener('durationchange', () => {
+            console.log('视频长度');
+            ipcRenderer.send('log', '视频长度: ', $video.duration);
+            const duration = $video.duration;
+			$video.currentTime = duration > 20 ? duration - 10 : duration;
+		});
+
+		$video.addEventListener('ended', async() => {
+			refreshLoad();
+		});
+
+		$video.addEventListener('error', async() => {
+			refreshLoad();
+		});
+	});
+
+	observer.observe(document.querySelector('body'), { attributes: true, childList: true, subtree: true });
+});

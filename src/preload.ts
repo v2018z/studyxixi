@@ -5,6 +5,23 @@ import { onLogin, isLoggedIn } from './login';
 import { loginUrl, homeUrl, waitImageUrl } from './urls';
 import { getUsableRateScoreTasks, showScoreDetail, isDone } from './score';
 import { getLgDate, articles, videos, getArticleChannels, getVideoChannels } from './channels';
+import { config } from './config';
+
+const showTaskControl = async () => {
+	await delay(5000)
+	let isShow = config.showTaskWindow;
+	(document.querySelector('.menu .login') as HTMLElement).style.width = '100%';
+	const $control = document.createElement('span');
+	$control.innerHTML = `【${isShow ? '隐藏任务面板' : '显示任务面板'}】`;
+	$control.style.cursor = 'pointer';
+	document.querySelector('.menu .logged-text').appendChild($control);
+
+	$control.addEventListener('click', () => {
+		isShow = !isShow;
+		ipcRenderer.send('toggle-task-window', isShow);
+		$control.innerHTML = `【${isShow ? '隐藏任务面板' : '显示任务面板'}】`
+	});
+}
 
 /**
  * 每个页面跳转都会执行哦
@@ -69,6 +86,9 @@ domContentLoaded(async () => {
 		$tips.style.marginTop = '50px';
 
 		$root.appendChild($tips);
+
+		// 任务面板控制
+		showTaskControl();
 	});
 
 	observer.observe(document.querySelector('body'), { childList: true, subtree: true });
@@ -76,32 +96,52 @@ domContentLoaded(async () => {
 	const articleChannels = await getArticleChannels();
 	const videoChannels = await getVideoChannels();
 
+	ipcRenderer.send('set-article-channels', articleChannels);
+	ipcRenderer.send('set-video-channels', videoChannels);
+
 	const circleArticleTask = async () => {
 		const [watchdArticleTask, , watchArticleTimeTask, ,] = await getUsableRateScoreTasks();
 
-		if (!isDone(watchdArticleTask) || !isDone(watchArticleTimeTask)) {
-			const channel = getRandomElement(articleChannels);
-			ipcRenderer.send('log', 'article', channel.url);
-			ipcRenderer.send('create-article-view', {
-				url: channel.url,
-				lifeTime: 130000,
-			});
+		if (isDone(watchdArticleTask) && isDone(watchArticleTimeTask)) {
 			return;
 		}
+
+		const channel = getRandomElement(articleChannels);
+		ipcRenderer.send('log', '文章地址：', channel.url);
+		ipcRenderer.send('create-article-view', {
+			url: channel.url,
+		});
+		return;
 	}
 
 	const circleVideoTask = async () => {
 		const [, watchVideoTask, ,watchVideoTimeTask] = await getUsableRateScoreTasks();
-
-		if (!isDone(watchVideoTask) || !isDone(watchVideoTimeTask)) {
-			const channel = getRandomElement(videoChannels);
-			ipcRenderer.send('log', 'video', channel.url);
-			ipcRenderer.send('create-video-view', {
-				url: channel.url,
-				lifeTime: 190000,
-			});
+		
+		if (isDone(watchVideoTask) || isDone(watchVideoTimeTask)) {
 			return;
 		}
+
+		const channel = getRandomElement(videoChannels);
+		ipcRenderer.send('log', '视频地址：', channel.url);
+		ipcRenderer.send('create-video-view', {
+			url: channel.url,
+		});
+		return;
+	}
+
+	const circleFastVideoTask = async () => {
+		const [, watchVideoTask, ,watchVideoTimeTask] = await getUsableRateScoreTasks();
+		
+		if (isDone(watchVideoTask)) {
+			return;
+		}
+
+		const channel = getRandomElement(videoChannels);
+		ipcRenderer.send('log', '快速视频地址：', channel.url);
+		ipcRenderer.send('create-fast-video-view', {
+			url: channel.url,
+		});
+		return;
 	}
 
 	const cicleTaks = async () => {
@@ -109,6 +149,8 @@ domContentLoaded(async () => {
 		await circleArticleTask();
 		await delay(2000);
 		await circleVideoTask();
+		await delay(2000);
+		await circleFastVideoTask();
 		
 		checkIsOver();
 	}
@@ -134,8 +176,6 @@ domContentLoaded(async () => {
 	
 	ipcRenderer.on('watch-article', async () => {
 		showScoreDetail();
-		await circleArticleTask();
-
 		checkIsOver();
 	});
 
