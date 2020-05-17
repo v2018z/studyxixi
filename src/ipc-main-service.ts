@@ -100,7 +100,6 @@ export const closeTask = () => {
 
 export const toggleTaskWindow = (isShow: boolean) => {
 	win.getChildWindows().forEach((view: BrowserWindow) => {
-		console.log(isShow);
 		if (isShow) {
 			view.show();
 		} else {

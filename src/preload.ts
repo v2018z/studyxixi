@@ -147,9 +147,11 @@ domContentLoaded(async () => {
 	const cicleTaks = async () => {
 		await showScoreDetail();
 		await circleArticleTask();
-		await delay(2000);
+		await delay(1000);
+		await circleArticleTask();
+		await delay(1000);
 		await circleVideoTask();
-		await delay(2000);
+		await delay(1000);
 		await circleFastVideoTask();
 		
 		checkIsOver();
