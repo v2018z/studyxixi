@@ -1,8 +1,8 @@
-import { ipcRenderer } from 'electron';
+import { ipcRenderer, Menu } from 'electron';
 import * as path from 'path';
 import { domContentLoaded, getRandomElement, delay } from './utils';
 import { onLogin, isLoggedIn } from './login';
-import { loginUrl, homeUrl } from './urls';
+import { loginUrl, homeUrl, waitImageUrl } from './urls';
 import { getUsableRateScoreTasks, showScoreDetail, isDone } from './score';
 import { getLgDate, articles, videos, getArticleChannels, getVideoChannels } from './channels';
 
@@ -26,9 +26,52 @@ domContentLoaded(async () => {
 	 * 未登录强制跳到登录页
 	 */
 	if (!isLoggedIn()) {
+		ipcRenderer.send('close-task');
 		location.href = `${loginUrl}?ref=${homeUrl}`;
 		return;
 	}
+
+	
+	const observer = new MutationObserver(() => {
+		document.querySelectorAll('.xuexi, .menu-list, .search-icon, section, footer').forEach((element: HTMLElement) => {
+			if (element.style.display === 'none') return;
+			element.style.display = 'none';
+		});
+
+		if (document.getElementById('waiting-img')) {
+			return;
+		}
+		
+		(document.querySelector('.logged-link') as HTMLElement).style.fontSize = '18px';
+		(document.querySelector('.menu') as HTMLElement).style.minWidth = '100%';
+
+		const $body = document.querySelector('body');
+		$body.style.overflow = 'hidden';
+		$body.style.minWidth = '100%';
+		$body.style.width =  '100%';
+
+		const $img = document.createElement('img');
+		$img.id = 'waiting-img';
+		$img.src = waitImageUrl;
+		$img.style.display = 'block';
+		$img.style.margin = '0 auto';
+		$img.style.marginTop = '100px';
+		$img.style.width = '175px';
+
+		const $root: HTMLElement = document.getElementById('root');
+
+		$root.appendChild($img);
+
+		const $tips = document.createElement('div');
+		$tips.id = 'task-tips';
+		$tips.innerHTML = '任务自动在后台执行, 不要着急';
+		$tips.style.textAlign = 'center';
+		$tips.style.marginTop = '50px';
+
+		$root.appendChild($tips);
+	});
+
+	observer.observe(document.querySelector('body'), { childList: true, subtree: true });
 
 	const articleChannels = await getArticleChannels();
 	const videoChannels = await getVideoChannels();
@@ -77,10 +120,15 @@ domContentLoaded(async () => {
 			&& isDone(watchArticleTimeTask) 
 			&& isDone(watchVideoTimeTask)) {
 				const n = new Notification('温馨提示', {
-				body: '希希同学，今日积分已经满啦',
-				silent: false,
-				icon: 'https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture',
-			});
+					body: '希希同学，今日积分已经满啦',
+					silent: false,
+					icon: 'https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture',
+				});
+				ipcRenderer.send('close-task');
+				
+				const $tips: HTMLElement = document.getElementById('task-tips');
+				$tips.innerHTML = '恭喜，今日积分已满';
+				$tips.style.color = '#ff0000';
 		}
 	}
 	

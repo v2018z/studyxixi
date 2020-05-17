@@ -8,9 +8,9 @@ const createWindow = () => {
 	if (win) return;
 
 	win = new BrowserWindow({
-		width: 1200,
-		height: 600,
-		show: true,
+		width: 800,
+		height: 650,
+		show: false,
 		webPreferences: {
 			// 渲染线程使用node
 			nodeIntegration: true,
@@ -18,9 +18,10 @@ const createWindow = () => {
 			webSecurity: true,
 			preload: path.join(__dirname, './preload.js'),
 			backgroundThrottling: false,
+			webviewTag: true,
 		}
 	});
-	
+
 	win.loadURL(homeUrl);
 
 	win.once('ready-to-show', () => {
@@ -39,8 +40,6 @@ const createWindow = () => {
 	// 静音
 	win.webContents.audioMuted = true;
 
-	win.webContents.openDevTools();
-
 	// 移除菜单栏
 	Menu.setApplicationMenu(Menu.buildFromTemplate([]));
 }
@@ -56,11 +55,14 @@ app.on('window-all-closed', () => {
 });
 
 app.on('activate', () => {
+	console.log('activate');
 	// 在macOS上，当单击dock图标并且没有其他窗口打开时，
   // 通常在应用程序中重新创建一个窗口。
 	if (BrowserWindow.getAllWindows().length === 0) {
 		createWindow();
 	}
 });
+
+app.allowRendererProcessReuse = true;
 
 export { win };

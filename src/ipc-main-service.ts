@@ -20,19 +20,24 @@ export const refreshMenu = (event: Event, rate: any) => {
 	}
 }
 
-const createBrowerView = (options: any): BrowserView => {
-	const view = new BrowserView({
+const createBrowerView = (options: any): BrowserWindow => {
+	const view = new BrowserWindow({
+		parent: win,
+		closable: false,
+		x: win.getBounds().x + options.x, 
+		y: win.getBounds().y, 
+		width: 500, 
+		height: 600,
+		show: false,
 		webPreferences: {
 			// 渲染线程禁止使用node
 			nodeIntegration: false,
 			// 禁用同源策略 (通常用来测试网站)
 			webSecurity: true,
 			preload: options.preload,
+			backgroundThrottling: false,
 		}
 	});
-	
-	win.addBrowserView(view);
-	view.setBounds({ x: options.x, y: 0, width: 500, height: 600 });
 	view.webContents.loadURL(options.url);
 	view.webContents.audioMuted = true;
 	return view;
@@ -49,7 +54,6 @@ export const createArticleView = async (event: Event, options: any) => {
 	
 	await delay(options.lifeTime);
 	view.destroy();
-	win.removeBrowserView(view);
 
 	win.webContents.send('watch-article');
 }
@@ -62,10 +66,15 @@ export const createVideoView = async (event: Event, options: any) => {
 		preload: path.join(__dirname, './videos.js'),
 	});
 	win.setBackgroundColor('#c8e1ff');
-	view.webContents.openDevTools();
-
 }
 
 export const watchVideo = async (event: Event) => {
 	win.webContents.send('watch-video');
+}
+
+export const closeTask = () => {
+	win.getChildWindows().forEach((view: BrowserWindow) => {
+		view.destroy();
+	});
+
 }
