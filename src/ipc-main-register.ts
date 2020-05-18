@@ -3,7 +3,7 @@ import { win } from './browser-window';
 import * as path from 'path';
 import { log, refreshMenu, createArticleView, createVideoView, watchVideo, 
     closeTask, watchArticle, toggleTaskWindow, createFastVideoView } from './ipc-main-service';
-import { setArticleChannels, setVideoChannes, getArticleChannels, getVideoChannels } from './store';
+import { setArticleChannels, setVideoChannels, getArticleChannels, getVideoChannels } from './store';
 
 // 注册接受渲染进程事件
 ipcMain.on('log', (event: Event, message?: any, ...optionalParams: any[]) => log(event, message, ...optionalParams));
@@ -26,7 +26,7 @@ ipcMain.on('close-task', closeTask);
 
 ipcMain.on('set-article-channels', (event, channels: []) => setArticleChannels(channels));
 
-ipcMain.on('set-video-channels', (event, channels: []) => setVideoChannes(channels));
+ipcMain.on('set-video-channels', (event, channels: []) => setVideoChannels(channels));
 
 ipcMain.handle('get-article-channels', getArticleChannels);
 

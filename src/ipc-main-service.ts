@@ -21,7 +21,7 @@ export const refreshMenu = (event: Event, rate: any) => {
 	}
 }
 
-const createBrowerView = (options: any): BrowserWindow => {
+const createBrowserView = (options: any): BrowserWindow => {
 	let view = new BrowserWindow({
 		parent: win,
 		closable: false,
@@ -55,7 +55,7 @@ const createBrowerView = (options: any): BrowserWindow => {
 }
 
 export const createArticleView = async (event: Event, options: any) => {
-	const view = createBrowerView({
+	const view = createBrowserView({
 		...options,
 		x: 0,
 		url: options.url,
@@ -65,7 +65,7 @@ export const createArticleView = async (event: Event, options: any) => {
 }
 
 export const createVideoView = async (event: Event, options: any) => {
-	const view = createBrowerView({
+	const view = createBrowserView({
 		...options,
 		x: 250,
 		url: options.url,
@@ -75,7 +75,7 @@ export const createVideoView = async (event: Event, options: any) => {
 }
 
 export const createFastVideoView = async (event: Event, options: any) => {
-	const view = createBrowerView({
+	const view = createBrowserView({
 		...options,
 		x: 500,
 		url: options.url,

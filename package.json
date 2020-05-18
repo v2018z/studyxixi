@@ -8,6 +8,7 @@
     "watch": "tsc -w",
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "start": "chcp 65001 && npm run build && electron ./dist/main.js",
+    "start:mac": "npm run build && electron ./dist/main.js",
     "build:xixi": "npm run build && electron-packager . 希希的学习强国 --electron-version=8.2.5 --win --arch=x64 --overwrite --ignore=node_modules --ignore=package-lock.json"
   },
   "devDependencies": {

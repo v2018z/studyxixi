@@ -9,7 +9,7 @@ domContentLoaded(async () => {
 
 	const videoChannels = await ipcRenderer.invoke('get-video-channels');
 
-	let currenVideo: any = null;
+	let currentVideo: any = null;
 
 	const refreshLoad = () => {
 		ipcRenderer.send('watch-video');
@@ -21,7 +21,7 @@ domContentLoaded(async () => {
 	const observer = new MutationObserver(() => {
 		const $video = document.querySelector('video');
 
-        if ($video == null || currenVideo != null ) return;
+        if ($video == null || currentVideo != null ) return;
         
         window.scrollBy({
             top: document.body.clientHeight / 2 + getRandomNumberBetween(-20, 20),
@@ -35,7 +35,7 @@ domContentLoaded(async () => {
             });
         }, 1000);
 
-        currenVideo = $video;
+        currentVideo = $video;
 
 		$video.addEventListener('durationchange', () => {
             console.log('视频长度');

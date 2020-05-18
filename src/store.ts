@@ -14,7 +14,7 @@ export const setArticleChannels = (channels: [] = []) => {
     state.articleChannels = [...channels];
 }
 
-export const setVideoChannes = (channels: [] = []) => {
+export const setVideoChannels = (channels: [] = []) => {
     state.videoChannels = [...channels];
 }
 

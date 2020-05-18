@@ -8,7 +8,7 @@ import { ipcRenderer, ipcMain } from 'electron';
 domContentLoaded(async () => {
 	ipcRenderer.send('log', '开始看文章');
 
-	const articleChanneles =  await ipcRenderer.invoke('get-article-channels');
+	const articleChannels =  await ipcRenderer.invoke('get-article-channels');
 
 	await delay(5000);
 
@@ -26,7 +26,7 @@ domContentLoaded(async () => {
 
 	const refreshLoad = () => {
 		ipcRenderer.send('watch-article');
-		const channel = getRandomElement(articleChanneles);
+		const channel = getRandomElement(articleChannels);
 		ipcRenderer.send('log', '文章地址：', channel.url);
 		location.href = channel.url || location.href;
 	}
