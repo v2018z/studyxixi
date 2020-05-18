@@ -1,27 +1,27 @@
 // 存储各种数据
 
 type stateTypes = {
-    articleChannels: any[],
-    videoChannels: any[],
-}
+  articleChannels: any[];
+  videoChannels: any[];
+};
 
 const state: stateTypes = {
-    articleChannels: [],
-    videoChannels: [],
+  articleChannels: [],
+  videoChannels: [],
 };
 
 export const setArticleChannels = (channels: [] = []) => {
-    state.articleChannels = [...channels];
-}
+  state.articleChannels = [...channels];
+};
 
 export const setVideoChannels = (channels: [] = []) => {
-    state.videoChannels = [...channels];
-}
+  state.videoChannels = [...channels];
+};
 
 export const getArticleChannels = () => {
-    return state.articleChannels;
-}
+  return state.articleChannels;
+};
 
 export const getVideoChannels = () => {
-    return state.videoChannels;
-}
+  return state.videoChannels;
+};

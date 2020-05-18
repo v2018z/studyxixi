@@ -17,6 +17,7 @@
     "electron-packager": "^14.2.1",
     "path": "^0.12.7",
     "tslint": "^6.1.2",
+    "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.9.2"
   },
   "dependencies": {
