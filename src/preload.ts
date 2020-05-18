@@ -227,5 +227,6 @@ domContentLoaded(async () => {
     checkIsOver();
   });
 
-  runTask();
+  showScoreDetail();
+  // runTask();
 });

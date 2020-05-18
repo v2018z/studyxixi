@@ -23,6 +23,9 @@ export const onLogin = async () => {
   });
 
   const observer = new MutationObserver(() => {
+	// 关闭闪屏页
+	ipcRenderer.send('close-win-splash');
+	
     const text = `${config.tipsPrefix}打开APP扫它👆`;
     const $loginText = document.querySelector('.ddlogintext');
     $loginText.innerHTML = text;

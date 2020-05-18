@@ -5,6 +5,7 @@ import { delay } from './utils';
 import { showScoreDetail } from './score';
 import { config } from './config';
 import { splashComplete, getSplashIsComplete } from './store';
+import { dailyAnswersUrl, myStudyUrl } from './urls';
 
 export const log = (event: Event, message?: any, ...optionalParams: any[]) => {
   console.log(message, ...optionalParams);
@@ -18,7 +19,7 @@ export const setSplashComplete = () => {
 export const closeWinPlash = async () => {
   const timer = setInterval(() => {
     if (getSplashIsComplete()) {
-      splash.destroy();
+      splash && splash.destroy && splash.destroy();
       clearInterval(timer);
     }
   }, 500);
@@ -157,11 +158,13 @@ export const createDailyAnswersBrowser = () => {
       nodeIntegration: false,
       // 禁用同源策略 (通常用来测试网站)
       webSecurity: true,
+      preload: path.join(__dirname, './answers/day'),
       backgroundThrottling: false,
     },
   });
-  view.webContents.loadURL('https://www.baidu.com');
+  view.loadURL(myStudyUrl);
   view.webContents.audioMuted = true;
+  view.webContents.openDevTools();
 
   view.once('ready-to-show', () => {
     view.show();
