@@ -2,11 +2,14 @@ import { BrowserWindow, Menu, app } from 'electron';
 import * as path from 'path';
 import { homeUrl } from './urls';
 import { config } from './config';
+import { delay } from './utils';
 
 let win: BrowserWindow = null;
+let splash: BrowserWindow;
 
 const createWindow = () => {
   if (win) return;
+
 
   win = new BrowserWindow({
     width: 800,
@@ -22,6 +25,19 @@ const createWindow = () => {
       webviewTag: true,
     },
   });
+
+  splash = new BrowserWindow({ 
+    width: 800, 
+    height: 650, 
+    transparent: true, 
+    frame: false, 
+    alwaysOnTop: true, 
+    webPreferences: {
+      preload: path.join(__dirname, './splash.js'),
+    } 
+  });
+
+  splash.loadFile(path.join(__dirname, '../splash.html'));
 
   win.loadURL(homeUrl);
 
@@ -60,7 +76,6 @@ app.on('window-all-closed', () => {
 });
 
 app.on('activate', () => {
-  console.log('activate');
   // 在macOS上，当单击dock图标并且没有其他窗口打开时，
   // 通常在应用程序中重新创建一个窗口。
   if (BrowserWindow.getAllWindows().length === 0) {
@@ -70,4 +85,4 @@ app.on('activate', () => {
 
 app.allowRendererProcessReuse = true;
 
-export { win };
+export { win, splash };

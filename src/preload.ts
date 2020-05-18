@@ -14,7 +14,6 @@ import {
 import { config } from './config';
 
 const showTaskControl = async () => {
-  await delay(5000);
   let isShow = config.showTaskWindow;
   (document.querySelector('.menu .login') as HTMLElement).style.width = '100%';
   const $control = document.createElement('span');
@@ -57,7 +56,7 @@ domContentLoaded(async () => {
     return;
   }
 
-  const observer = new MutationObserver(() => {
+  const observer = new MutationObserver(async () => {
     document
       .querySelectorAll('.xuexi, .menu-list, .search-icon, section, footer')
       .forEach((element: HTMLElement) => {
@@ -68,6 +67,9 @@ domContentLoaded(async () => {
     if (document.getElementById('waiting-img')) {
       return;
     }
+
+    // 关闭闪屏页
+    ipcRenderer.send('close-win-splash');
 
     (document.querySelector('.logged-link') as HTMLElement).style.fontSize =
       '18px';
@@ -97,9 +99,6 @@ domContentLoaded(async () => {
     $tips.style.marginTop = '50px';
 
     $root.appendChild($tips);
-
-    // 任务面板控制
-    showTaskControl();
   });
 
   observer.observe(document.querySelector('body'), {
@@ -182,7 +181,10 @@ domContentLoaded(async () => {
     await circleVideoTask();
     await delay(1000);
     await circleFastVideoTask();
-
+    await delay(1000);
+    await circleFastVideoTask();
+    // 任务面板控制
+    showTaskControl();
     checkIsOver();
   };
 

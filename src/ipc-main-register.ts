@@ -1,12 +1,18 @@
 import { ipcMain } from 'electron';
 import { log, refreshMenu, createArticleView, createVideoView, watchVideo, 
-    closeTask, watchArticle, toggleTaskWindow, createFastVideoView, setAppAudioMuted } from './ipc-main-service';
+    closeTask, watchArticle, toggleTaskWindow, createFastVideoView, setAppAudioMuted, 
+    closeWinPlash, setSplashComplete 
+} from './ipc-main-service';
 import { setArticleChannels, setVideoChannels, getArticleChannels, getVideoChannels } from './store';
 
 // 注册接受渲染进程事件
 ipcMain.on('log', (event: Event, message?: any, ...optionalParams: any[]) => log(event, message, ...optionalParams));
 
 ipcMain.on('set-app-audio-muted', (event, isMuted: boolean ) => setAppAudioMuted(isMuted));
+
+ipcMain.on('close-win-splash', closeWinPlash);
+
+ipcMain.on('set-splash-complete', setSplashComplete);
 
 ipcMain.on('refresh-menu', (event, rate) => { refreshMenu(event, rate )});
 

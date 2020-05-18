@@ -1,13 +1,28 @@
 import { app, BrowserWindow, ipcMain, Menu, BrowserView } from 'electron';
-import { win } from './browser-window';
+import { win, splash } from './browser-window';
 import * as path from 'path';
 import { delay } from './utils';
 import { showScoreDetail } from './score';
 import { config } from './config';
+import { splashComplete, getSplashIsComplete } from './store';
 
 export const log = (event: Event, message?: any, ...optionalParams: any[]) => {
   console.log(message, ...optionalParams);
 };
+
+export const setSplashComplete = () => {
+  console.log('已完成');
+  splashComplete();
+}
+
+export const closeWinPlash = async () => {
+  const timer = setInterval(() => {
+    if (getSplashIsComplete()) {
+      splash.destroy();
+      clearInterval(timer);
+    }
+  }, 500);
+}
 
 export const refreshMenu = (event: Event, rate: any) => {
   if (rate.score) {
