@@ -32,6 +32,19 @@ export const refreshMenu = (event: Event, rate: any) => {
       { label: `今日积分：${today}` },
       ...types.map((t: string) => ({ label: `${t}` })),
     ];
+
+    template.unshift({
+      label: `答题`,
+      submenu: [
+        {
+          label: '今日答题',
+          click: () => {
+            createDailyAnswersBrowser();
+          }
+        }
+      ]
+    })
+
     Menu.setApplicationMenu(Menu.buildFromTemplate(template));
   }
 };
@@ -126,3 +139,35 @@ export const toggleTaskWindow = (isShow: boolean) => {
     }
   });
 };
+
+/**
+ * 创建答题窗口
+ */
+export const createDailyAnswersBrowser = () => {
+  let view = new BrowserWindow({
+    parent: win,
+    closable: true,
+    x: win.getBounds().x,
+    y: win.getBounds().y,
+    width: 500,
+    height: 600,
+    show: false,
+    webPreferences: {
+      // 渲染线程禁止使用node
+      nodeIntegration: false,
+      // 禁用同源策略 (通常用来测试网站)
+      webSecurity: true,
+      backgroundThrottling: false,
+    },
+  });
+  view.webContents.loadURL('https://www.baidu.com');
+  view.webContents.audioMuted = true;
+
+  view.once('ready-to-show', () => {
+    view.show();
+  });
+
+  view.on('closed', () => {
+    view = null;
+  });
+}
