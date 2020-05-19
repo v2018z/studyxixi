@@ -16,6 +16,7 @@
     "@types/jquery": "^3.3.38",
     "@types/js-base64": "^2.3.1",
     "@types/lodash": "^4.14.151",
+    "@types/qs": "^6.9.2",
     "electron": "8.2.5",
     "electron-packager": "^14.2.1",
     "path": "^0.12.7",
@@ -25,6 +26,7 @@
   },
   "dependencies": {
     "js-base64": "2.5.2",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.15",
+    "qs": "^6.9.4"
   }
 }

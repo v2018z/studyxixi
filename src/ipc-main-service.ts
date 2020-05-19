@@ -5,20 +5,20 @@ import { delay } from './utils';
 import { showScoreDetail } from './score';
 import { config } from './config';
 import { splashComplete, getSplashIsComplete } from './store';
-import { dailyAnswersUrl, myStudyUrl } from './urls';
+import { myStudyUrl } from './urls';
 
 export const log = (event: Event, message?: any, ...optionalParams: any[]) => {
   console.log(message, ...optionalParams);
 };
 
 export const setSplashComplete = () => {
-  console.log('已完成');
   splashComplete();
 }
 
 export const closeWinPlash = async () => {
   const timer = setInterval(() => {
     if (getSplashIsComplete()) {
+      // tslint:disable-next-line:no-unused-expression
       splash && splash.destroy && splash.destroy();
       clearInterval(timer);
     }
@@ -39,10 +39,16 @@ export const refreshMenu = (event: Event, rate: any) => {
       submenu: [
         {
           label: '今日答题',
-          click: () => {
+          click() {
             createDailyAnswersBrowser();
           }
-        }
+        },
+        {
+          label: '专项答题',
+          click() {
+            win.webContents.send('start-special-question');
+          },
+        },
       ]
     })
 

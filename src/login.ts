@@ -1,6 +1,19 @@
 import { ipcRenderer } from 'electron';
 import { delay } from './utils';
 import { config } from './config';
+import { userInfoUrl, examIndexUrl } from './urls';
+
+export const getUserInfo = async () => {
+  const res = await fetch(userInfoUrl , { 
+    credentials: 'include',
+    referrer: examIndexUrl, 
+  });
+  const rs = await res.json();
+  if (rs.code !== 200) {
+    throw new Error(rs.error);
+  }
+  return rs.data;
+}
 
 export const onLogin = async () => {
   // 隐藏页面无用的元素

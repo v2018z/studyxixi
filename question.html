@@ -1,0 +1,357 @@
+<!DOCTYPE html><html><head>
+      <title>question</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:////Users/jax/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.5.3/node_modules/@shd101wyy/mume/dependencies/katex/katex.min.css">
+      
+      
+
+      
+      
+      
+      
+      
+      
+      
+
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="%E6%9F%A5%E8%AF%A2%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF">&#x67E5;&#x8BE2;&#x7528;&#x6237;&#x4FE1;&#x606F;</h1>
+
+<ul>
+<li>curl &apos;<a href="https://pc-api.xuexi.cn/open/api/user/info">https://pc-api.xuexi.cn/open/api/user/info</a>&apos; <br>
+-H &apos;Connection: keep-alive&apos; <br>
+-H &apos;Pragma: no-cache&apos; <br>
+-H &apos;Cache-Control: no-cache&apos; <br>
+-H &apos;Accept: application/json, text/plain, <em>/</em>&apos; <br>
+-H &apos;User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36&apos; <br>
+-H &apos;Origin: <a href="https://pc.xuexi.cn">https://pc.xuexi.cn</a>&apos; <br>
+-H &apos;Sec-Fetch-Site: same-site&apos; <br>
+-H &apos;Sec-Fetch-Mode: cors&apos; <br>
+-H &apos;Sec-Fetch-Dest: empty&apos; <br>
+-H &apos;Referer: <a href="https://pc.xuexi.cn/points/exam-index.html">https://pc.xuexi.cn/points/exam-index.html</a>&apos; <br>
+-H &apos;Accept-Language: zh-CN,zh;q=0.9,en;q=0.8&apos; <br>
+-H &apos;Cookie: <strong>UID</strong>=751f6ff0-91c9-11ea-8ff5-b576c422c8a1; aliyungf_tc=AQAAAOVCEBf/TAIArUwW0tElLkJo5nS3; tmzw=1589857371790; zwfigprt=9159b7dae5bdab4f0bc0520cbb1afd87; exam_gray=1; webUmidToken=TBD0625FBA145C7971BD811620936440E9759A96045C518D0D1E6A0821C; token=789776f00bb4406fa5c49529066d23a1; uaToken=122#Yn2qZJVLEEaEkJpZy4pjEJponDJE7SNEEP7ZpJRBuDPpJFQLpCGwoHZDpJEL7SwBEyGZpJLlu4Ep+FQLpoGUEELon4yE7SNEEP7ZpERBuDPE+BQPpC76EJponDJLKMQEI155XDJ2tO9/a2Ie3P7Ny0VJaEBthIwFJ7HsnN83TxNccUTe1be6EEo3RF+3VEpDqMf2FzpangpjuOqEELVZ8oLUJNEEyB3tqW3bE5VXm5qjeO5EDIRr8CLU+DWEyF3mqW32E5pangp4ulqEELVZ8oL6JNEEyBfDqWfbDEpxnSp1uOsHDLVruCmUJzPEuF1SrgiMtyuJCVmBeXybyBmv6SO5ocK+gfHcmlHfPc1bDoMD9hd/oiN357f1ozCVRwLQ4ToIn9gJb64rXxNDNllnUMY5goy1ez3/j3CI9zUP1CFG2JAD93Oky1riG5ccJokey/5QsVja4IK7r7AJyYsKhQ9B0RzmQXyaddmF3YcPacXRZPC7aZF/k7p6Za4tRRfd8rbLBqE6Z67/Jj2pCgDj18z70OP+FfCDiiUEsw9AHJt0PJj/oI4u4zcXQm0bxNwA+YPG6+awh1sw0ILBt9heb8O78xD0A311ZeoUD+TehKA8itHBddUXcT3NCJ411aBPBoAtd/mQEyzMX4Ba3dYRIg62sQOL4tKOM16mKMRwHcy1GY1qi3jGFfjRUb5xIaCgd+Gatye0lRG6CMEt013mfLdOLSbpG0L9B8Bg+jHyX/nnsOwK6EtayfGaFsOtKKKFH72oeRoE7QdB02Xm1HFQGiJ=&apos; <br>
+--compressed</li>
+</ul>
+<h1 class="mume-header" id="%E6%9F%A5%E8%AF%A2%E4%B8%93%E9%A1%B9%E7%AD%94%E9%A2%98%E5%88%97%E8%A1%A8">&#x67E5;&#x8BE2;&#x4E13;&#x9879;&#x7B54;&#x9898;&#x5217;&#x8868;</h1>
+
+<p>fetch(&quot;<a href="https://pc-proxy-api.xuexi.cn/api/exam/service/paper/pc/list?pageSize=50&amp;pageNo=1">https://pc-proxy-api.xuexi.cn/api/exam/service/paper/pc/list?pageSize=50&amp;pageNo=1</a>&quot;, {<br>
+&quot;headers&quot;: {<br>
+&quot;accept&quot;: &quot;application/json, text/plain, <em>/</em>&quot;,<br>
+&quot;accept-language&quot;: &quot;zh-CN,zh;q=0.9,en;q=0.8&quot;,<br>
+&quot;cache-control&quot;: &quot;no-cache&quot;,<br>
+&quot;pragma&quot;: &quot;no-cache&quot;,<br>
+&quot;sec-fetch-dest&quot;: &quot;empty&quot;,<br>
+&quot;sec-fetch-mode&quot;: &quot;cors&quot;,<br>
+&quot;sec-fetch-site&quot;: &quot;same-site&quot;,<br>
+&quot;uatoken&quot;: &quot;122#zoK3yD57EE+sYEpZy4pjEJponDJE7SNEEP7ZpJRBuDPpJFQLpCGwoHZDpJEL7SwBEyGZpJLlu4Ep+FQLpoGUEELon4yE7SNEEP7ZpERBuDPE+BQPpC76EJponDJLKMQEI155XDJ2tO9/a2Ie3P7Ny0VJaEBthIwFJ7HsnN83TxNccUTe1be6EEo3RF+3VEpDqMf2fzpangETuOqEELVZ8oLUJNEEyB3tqW3bE5VXm5qjeO5EDIRr8CLU+DWEyF3mqW32E5pangp4ulqEELVZ8oL6JNEEyBfDqWfbDEpxnSp1uOsHDLVruCmUJzPEuF1SrgiMtyuJCVmBeIlbx3hSKSFCmwK9B/w8UBo8/acG5GdmcVTUPJ7ISKvjVY5aQT5o5SUP/PCwrYr3eb8X6+GrjPLa3uz4hcSONngrm+s/UYjGRnSiApk7PRwTDwqhIyWESpvHrqKPEfPR8fTeNCFLXxrSzp+ZRjR5UIW+4viudGX/uNNVLglNE4jKmM6G1GPW8jFEORRZ34tH+Ojxxsr/PAPff4YPqV+XB+fwW4cRkTW259qeXUso0lrFtJryMRlhKHZWSoL3u/2O+UHB85Z6PZLZ+Lak0h5qve1yrPdpgherMW6ccDMYVcmHf6dkO5dxfSCH8Uh44VrO30qTaVhxZBsSapJcQKtZlTTL8qGm36TUSF4baWeUqxqCry3CWa4OMEhYUqsWDLfkSMqOEEof+rwVTdYBkjaTMD==&quot;,<br>
+&quot;webumidtoken&quot;: &quot;T3A424996D68A70656C1AE7FBE6BCC565487A87627525EFEC3F5E0DE118&quot;<br>
+},<br>
+&quot;referrer&quot;: &quot;<a href="https://pc.xuexi.cn/points/exam-paper-list.html">https://pc.xuexi.cn/points/exam-paper-list.html</a>&quot;,<br>
+&quot;referrerPolicy&quot;: &quot;no-referrer-when-downgrade&quot;,<br>
+&quot;body&quot;: null,<br>
+&quot;method&quot;: &quot;GET&quot;,<br>
+&quot;mode&quot;: &quot;cors&quot;,<br>
+&quot;credentials&quot;: &quot;include&quot;<br>
+});</p>
+<h1 class="mume-header" id="%E4%B8%93%E9%A1%B9%E7%AD%94%E9%A2%98%E9%A2%98%E7%9B%AE%E4%B8%8E%E7%AD%94%E6%A1%88">&#x4E13;&#x9879;&#x7B54;&#x9898;&#x9898;&#x76EE;&#x4E0E;&#x7B54;&#x6848;</h1>
+
+<pre class="language-text">curl &apos;https://pc-proxy-api.xuexi.cn/api/exam/service/detail/queryV3?type=1&amp;id=188&amp;forced=true&apos; \
+</pre>
+<p>-H &apos;Connection: keep-alive&apos; <br>
+-H &apos;Pragma: no-cache&apos; <br>
+-H &apos;Cache-Control: no-cache&apos; <br>
+-H &apos;Accept: application/json, text/plain, <em>/</em>&apos; <br>
+-H &apos;uaToken: 122#AnKW245nEE+bc4pZy4pjEJponDJE7SNEEP7ZpJRBuDPpJFQLpCGwoHZDpJEL7SwBEyGZpJLlu4Ep+FQLpoGUEELon4yE7SNEEP7ZpERBuDPE+BQPpC76EJponDJLKMQEI155XDJ2tO9/a2Ie3P7Ny0VJaEBthIwFJ7HsnN83TxNccUTe1be6EEo3RF+35H3DqMf2U5pangENuOqEELVZ8oLUJNEEyB3tqW3bE5VXm5qjeO5EDIRr8CLU+DWEyF3mqW32E5pangp4ulqEELVZ8oL6JNEEyBfDqWfbDEpxnSp1uOsHDLVruCmUJzPEuF1SrgiMtyuJCVmBeIzbRtLSKSO5ocK+gfThVJgWdjkLz7akQXuQNk4ymoLTSY1k5Rro+2Lid7078mbfjDQr/Qlw0yedfzwXQr7NK7gCTxSGXiqiwoI0chuxB7wfKIB/+U3bw1kNr1ZjB7cDpYuoJEnWRnEDabBzQRMpO6fJf6BBUh6LlZBcjSXAh+sYF1UclJK737W+Fl420OgyTuHeOEEsGA93/673FQ29vxror2qnh0S9m6ERmF3UI+oDfFq+0+9GnDe7C3Otwv/mWSXaf4g9lrxU15lKn/yMmPKwzGruJNrodvqKqa9I3Mku2Z4YS1oQJoDe8u0rGL3035hk92cDaKeDK1CnE3AwXKTr1fYbSRETHHMWZu/ypIv2DYRuhFMq6BKiuaj3UJjNvy/EFWjRvWytk8nw7nSpKb0=&apos; <br>
+-H &apos;User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36&apos; <br>
+-H &apos;webUmidToken: T9D78FD1052CCEC2718730464EEA78D7FE08770C5C0DB64E9134C18FA3A&apos; <br>
+-H &apos;Origin: <a href="https://pc.xuexi.cn">https://pc.xuexi.cn</a>&apos; <br>
+-H &apos;Sec-Fetch-Site: same-site&apos; <br>
+-H &apos;Sec-Fetch-Mode: cors&apos; <br>
+-H &apos;Sec-Fetch-Dest: empty&apos; <br>
+-H &apos;Referer: <a href="https://pc.xuexi.cn/points/exam-paper-detail.html?id=188">https://pc.xuexi.cn/points/exam-paper-detail.html?id=188</a>&apos; <br>
+-H &apos;Accept-Language: zh-CN,zh;q=0.9,en;q=0.8&apos; <br>
+-H &apos;Cookie: <strong>UID</strong>=751f6ff0-91c9-11ea-8ff5-b576c422c8a1; aliyungf_tc=AQAAAPNA4gQ1GQMArUwW0r6gPHOc+mFK; acw_tc=2760778f15898045452083091ecc963be9a63316de1c24bb7f18c6c720e4ba; exam_gray=1; token=789776f00bb4406fa5c49529066d23a1; uaToken=122#AnKW245nEE+bc4pZy4pjEJponDJE7SNEEP7ZpJRBuDPpJFQLpCGwoHZDpJEL7SwBEyGZpJLlu4Ep+FQLpoGUEELon4yE7SNEEP7ZpERBuDPE+BQPpC76EJponDJLKMQEI155XDJ2tO9/a2Ie3P7Ny0VJaEBthIwFJ7HsnN83TxNccUTe1be6EEo3RF+35H3DqMf2U5pangENuOqEELVZ8oLUJNEEyB3tqW3bE5VXm5qjeO5EDIRr8CLU+DWEyF3mqW32E5pangp4ulqEELVZ8oL6JNEEyBfDqWfbDEpxnSp1uOsHDLVruCmUJzPEuF1SrgiMtyuJCVmBeIzbRtLSKSO5ocK+gfThVJgWdjkLz7akQXuQNk4ymoLTSY1k5Rro+2Lid7078mbfjDQr/Qlw0yedfzwXQr7NK7gCTxSGXiqiwoI0chuxB7wfKIB/+U3bw1kNr1ZjB7cDpYuoJEnWRnEDabBzQRMpO6fJf6BBUh6LlZBcjSXAh+sYF1UclJK737W+Fl420OgyTuHeOEEsGA93/673FQ29vxror2qnh0S9m6ERmF3UI+oDfFq+0+9GnDe7C3Otwv/mWSXaf4g9lrxU15lKn/yMmPKwzGruJNrodvqKqa9I3Mku2Z4YS1oQJoDe8u0rGL3035hk92cDaKeDK1CnE3AwXKTr1fYbSRETHHMWZu/ypIv2DYRuhFMq6BKiuaj3UJjNvy/EFWjRvWytk8nw7nSpKb0=; webUmidToken=T9D78FD1052CCEC2718730464EEA78D7FE08770C5C0DB64E9134C18FA3A; tmzw=1589858236464; zwfigprt=5fcdd48261ab2714e18a32a4b0ccd72b&apos; <br>
+--compressed</p>
+<h1 class="mume-header" id="%E6%8F%90%E4%BA%A4%E4%B8%93%E9%A1%B9%E7%AD%94%E9%A2%98%E7%AD%94%E6%A1%88">&#x63D0;&#x4EA4;&#x4E13;&#x9879;&#x7B54;&#x9898;&#x7B54;&#x6848;</h1>
+
+<p>curl &apos;<a href="https://pc-proxy-api.xuexi.cn/api/exam/service/detail/submitV3">https://pc-proxy-api.xuexi.cn/api/exam/service/detail/submitV3</a>&apos; <br>
+-H &apos;Connection: keep-alive&apos; <br>
+-H &apos;Pragma: no-cache&apos; <br>
+-H &apos;Cache-Control: no-cache&apos; <br>
+-H &apos;Accept: application/json, text/plain, <em>/</em>&apos; <br>
+-H &apos;uaToken: 122#ghpATD5NEExHDEpZy4pjEJponDJE7SNEEP7ZpJRBuDPpJFQLpCGwoHZDpJEL7SwBEyGZpJLlu4Ep+FQLpoGUEELon4yE7SNEEP7ZpERBuDPE+BQPpC76EJponDJLKMQEI155XDJ2tO9/a2Ie3P7Ny0VJaEBthIwFJ7HsnN83TxNccUTe1be6EEo3RF+35H1DqMf2OzpangpMuOqEELVZ8oLUJNEEyB3tqW3bE5VXm5qjeO5EDIRr8CLU+DWEyF3mqW32E5pangp4ulqEELVZ8oL6JNEEyBfDqWfbDEpxnSp1uOsHDLVruCmUJzPEuF1SrgiMtyuJCVmBesDbaLzFKSO5ocK+gfHgXc6WN26UWHzHtUkpcaDpjylJDQnz1NzbMgA46bGC6Nd432i7VIjn62yW5KVRThM3f+usdMFco21CbOSxXri03AaZB1Hz1nSz4KfajoVDhDYtLBRk5nXjt1hBFvlURL36xWKzloD2jA0zaxX8bU9U3ztiAGpgzn+4zYY5AQJ/WTxwFsQ5DvVWSCrJxg+6DLmk3TaI+CJQSEO6gDZcjzCx644Qhy+IRCz0foD+EzNCc6VHpyX/VYEk9nevKPFdgYMXMfBLZ4/oGDDEJB5vv8I2TODLjee20CDDVhubEKRhHSYvBGyQpvEpGtVcWgknWpx/P8ACcyvFz/sR1cFeRwM7/RAob8mG8WtHBTWzDIYh50sY2N3vNxOKgAhHBDRtR54MfbmolVYa1PCHV7pX&apos; <br>
+-H &apos;User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36&apos; <br>
+-H &apos;webUmidToken: T609D042B37ACEC1EFA77610F925800CDF38D2F32CE94FF00596E825AC7&apos; <br>
+-H &apos;Content-Type: application/json;charset=UTF-8&apos; <br>
+-H &apos;Origin: <a href="https://pc.xuexi.cn">https://pc.xuexi.cn</a>&apos; <br>
+-H &apos;Sec-Fetch-Site: same-site&apos; <br>
+-H &apos;Sec-Fetch-Mode: cors&apos; <br>
+-H &apos;Sec-Fetch-Dest: empty&apos; <br>
+-H &apos;Referer: <a href="https://pc.xuexi.cn/points/exam-paper-detail.html?id=188">https://pc.xuexi.cn/points/exam-paper-detail.html?id=188</a>&apos; <br>
+-H &apos;Accept-Language: zh-CN,zh;q=0.9,en;q=0.8&apos; <br>
+-H &apos;Cookie: <strong>UID</strong>=751f6ff0-91c9-11ea-8ff5-b576c422c8a1; aliyungf_tc=AQAAAPNA4gQ1GQMArUwW0r6gPHOc+mFK; acw_tc=2760778f15898045452083091ecc963be9a63316de1c24bb7f18c6c720e4ba; token=789776f00bb4406fa5c49529066d23a1; uaToken=122#limPmE5pEEJP+EpZy4pjEJponDJE7SNEEP7ZpJRBuDPpJFQLpCGwoHZDpJEL7SwBEyGZpJLlu4Ep+FQLpoGUEELon4yE7SNEEP7ZpERBuDPE+BNPpC76EJponDJLKMQEI155XDJ2tO9/a2Ie3P7Ny0VJaEBthIwFJ7HsnN83TxNccUTe1be6EEo3RF+35BADqMf2PzpangpCuOqEELVZ8oLUJNEEyB3tqW3bE5VXm5qjeO5EDIRr8CLU+DWEyF3mqW32E5pangp4ulqEELVZ8oL6JNEEyBfDqMfbDEpxnSp1uOsHDLVruCmUJzPEuF1SrgiMtyuJCVmBeVPb+f2mKSFCmwK9B135l41pBKoytg7jD8ZUA0ySNpss6r3SJhr13PEcY72zImzYKCdYAo7Sqx48TGjFpzqYpsMs8mNo3+BbJ9+WRczqnsNVgH8EDeIprUJOBBXOpbac52udAx6DquMJkscSagOyUzUIdvyviYmbF8i7Qh0WMixP/IgXXHqRZZ8SXurj+Z3DupqPgiXjFT/zg6AyIIL1KUTiy9AfMl2uSvLTIEVMJu7kuSBjsv7IJ5iizOYn8xqASezWSsFv/I26ehN7wEwFU01t8MR9h9hzBbvuyHQbActmmrkl/sKwvh4d1X+y7peyM0OoXVCmEz7vQNn9rBDlHE4XLhviyEWLIOLCuV1MvXoAXaJk; webUmidToken=T5DC40C155CDC5043225F5E638F0630C1EAA52B7B7C1A18D6D1EC9DCF65; tmzw=1589877702620; zwfigprt=0c476d51b72b4036315172548fa63a3a&apos; <br>
+--data-binary &apos;{&quot;id&quot;:188,&quot;type&quot;:1,&quot;questions&quot;:[{&quot;questionId&quot;:5732,&quot;answers&quot;:[{&quot;answerId&quot;:14688,&quot;label&quot;:&quot;B&quot;}]},{&quot;questionId&quot;:5733,&quot;answers&quot;:[{&quot;answerId&quot;:14690,&quot;label&quot;:&quot;A&quot;},{&quot;answerId&quot;:14691,&quot;label&quot;:&quot;B&quot;},{&quot;answerId&quot;:14692,&quot;label&quot;:&quot;C&quot;},{&quot;answerId&quot;:14693,&quot;label&quot;:&quot;D&quot;}]},{&quot;questionId&quot;:5734,&quot;answers&quot;:[{&quot;answerId&quot;:14694,&quot;label&quot;:&quot;A&quot;},{&quot;answerId&quot;:14695,&quot;label&quot;:&quot;B&quot;},{&quot;answerId&quot;:14696,&quot;label&quot;:&quot;C&quot;},{&quot;answerId&quot;:14697,&quot;label&quot;:&quot;D&quot;}]},{&quot;questionId&quot;:5735,&quot;answers&quot;:[{&quot;answerId&quot;:14698,&quot;label&quot;:&quot;A&quot;},{&quot;answerId&quot;:14699,&quot;label&quot;:&quot;B&quot;},{&quot;answerId&quot;:14700,&quot;label&quot;:&quot;C&quot;}]},{&quot;questionId&quot;:5736,&quot;answers&quot;:[{&quot;answerId&quot;:14701,&quot;value&quot;:&quot;12314&quot;}]},{&quot;questionId&quot;:5737,&quot;answers&quot;:[{&quot;answerId&quot;:14702,&quot;value&quot;:&quot;&#x6C42;&#x5B9E;&quot;}]},{&quot;questionId&quot;:5738,&quot;answers&quot;:[{&quot;answerId&quot;:14703,&quot;label&quot;:&quot;A&quot;},{&quot;answerId&quot;:14704,&quot;label&quot;:&quot;B&quot;},{&quot;answerId&quot;:14705,&quot;label&quot;:&quot;C&quot;},{&quot;answerId&quot;:14706,&quot;label&quot;:&quot;D&quot;}]},{&quot;questionId&quot;:5739,&quot;answers&quot;:[{&quot;answerId&quot;:14710,&quot;label&quot;:&quot;D&quot;},{&quot;answerId&quot;:14709,&quot;label&quot;:&quot;C&quot;},{&quot;answerId&quot;:14708,&quot;label&quot;:&quot;B&quot;},{&quot;answerId&quot;:14707,&quot;label&quot;:&quot;A&quot;}]},{&quot;questionId&quot;:5740,&quot;answers&quot;:[{&quot;answerId&quot;:14711,&quot;value&quot;:&quot;&#x53EF;&#x6301;&#x7EED;&#x5229;&#x7528;&quot;}]},{&quot;questionId&quot;:5741,&quot;answers&quot;:[{&quot;answerId&quot;:14712,&quot;value&quot;:&quot;&#x8282;&#x6C34;&#x578B;&#x793E;&#x4F1A;&quot;}]}],&quot;usedTime&quot;:297,&quot;uniqueId&quot;:&quot;165956239225432576&quot;}&apos; <br>
+--compressed</p>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

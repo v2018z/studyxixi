@@ -1,17 +1,11 @@
 import { ipcRenderer, Menu } from 'electron';
 import * as path from 'path';
-import { domContentLoaded, getRandomElement, delay } from './utils';
-import { onLogin, isLoggedIn } from './login';
+import { domContentLoaded, delay } from './utils';
+import { onLogin, isLoggedIn, getUserInfo } from './login';
 import { loginUrl, homeUrl, waitImageUrl } from './urls';
-import { getUsableRateScoreTasks, showScoreDetail, isDone } from './score';
-import {
-  getLgDate,
-  articles,
-  videos,
-  getArticleChannels,
-  getVideoChannels,
-} from './channels';
 import { config } from './config';
+import Task from './task';
+import { querySpecialQuestionList } from './answers/api';
 
 const showTaskControl = async () => {
   let isShow = config.showTaskWindow;
@@ -29,32 +23,11 @@ const showTaskControl = async () => {
 };
 
 /**
- * 每个页面跳转都会执行哦
+ * 重新绘制页面
  */
-
-domContentLoaded(async () => {
-  console.log('页面加载完成');
-
-  // 默认静音
-  ipcRenderer.send('set-app-audio-muted', true);
-
-  /**
-   * 如果当前是登录页
-   * 执行等待扫码登录逻辑
-   */
-  if (location.href.startsWith(loginUrl)) {
-    onLogin();
-    return;
-  }
-
-  /**
-   * 未登录强制跳到登录页
-   */
-  if (!isLoggedIn()) {
-    ipcRenderer.send('close-task');
-    location.href = `${loginUrl}?ref=${homeUrl}`;
-    return;
-  }
+const reRenderPage = async () => {
+  const userInfo = await getUserInfo();
+  ipcRenderer.send('log', userInfo);
 
   const observer = new MutationObserver(async () => {
     document
@@ -74,6 +47,12 @@ domContentLoaded(async () => {
     (document.querySelector('.logged-link') as HTMLElement).style.fontSize =
       '18px';
     (document.querySelector('.menu') as HTMLElement).style.minWidth = '100%';
+
+    // 替换用户名
+    if (userInfo.nick) {
+      (document.querySelector('.menu .login') as HTMLElement).style.width = '400px'; 
+      document.querySelector('.logged-text > span').innerHTML = `${userInfo.nick}，欢迎您`
+    }
 
     const $body = document.querySelector('body');
     $body.style.overflow = 'hidden';
@@ -105,128 +84,45 @@ domContentLoaded(async () => {
     childList: true,
     subtree: true,
   });
+}
 
-  const articleChannels = await getArticleChannels();
-  const videoChannels = await getVideoChannels();
+/**
+ * 每个页面跳转都会执行哦
+ */
 
-  ipcRenderer.send('set-article-channels', articleChannels);
-  ipcRenderer.send('set-video-channels', videoChannels);
+domContentLoaded(async () => {
+  console.log('页面加载完成');
 
-  const circleArticleTask = async () => {
-    const [
-      watchArticleTask,
-      ,
-      watchArticleTimeTask,
-      ,
-    ] = await getUsableRateScoreTasks();
+  // 默认静音
+  ipcRenderer.send('set-app-audio-muted', true);
 
-    if (isDone(watchArticleTask) && isDone(watchArticleTimeTask)) {
-      return;
-    }
-
-    const channel = getRandomElement(articleChannels);
-    ipcRenderer.send('log', '文章地址：', channel.url);
-    ipcRenderer.send('create-article-view', {
-      url: channel.url,
-    });
+  /**
+   * 如果当前是登录页
+   * 执行等待扫码登录逻辑
+   */
+  if (location.href.startsWith(loginUrl)) {
+    onLogin();
     return;
-  };
+  }
 
-  const circleVideoTask = async () => {
-    const [
-      ,
-      watchVideoTask,
-      ,
-      watchVideoTimeTask,
-    ] = await getUsableRateScoreTasks();
-
-    if (isDone(watchVideoTask) || isDone(watchVideoTimeTask)) {
-      return;
-    }
-
-    const channel = getRandomElement(videoChannels);
-    ipcRenderer.send('log', '视频地址：', channel.url);
-    ipcRenderer.send('create-video-view', {
-      url: channel.url,
-    });
+  /**
+   * 未登录强制跳到登录页
+   */
+  if (!isLoggedIn()) {
+    ipcRenderer.send('close-task');
+    location.href = `${loginUrl}?ref=${homeUrl}`;
     return;
-  };
+  }
 
-  const circleFastVideoTask = async () => {
-    const [
-      ,
-      watchVideoTask,
-      ,
-      watchVideoTimeTask,
-    ] = await getUsableRateScoreTasks();
+  const task = new Task();
 
-    if (isDone(watchVideoTask)) {
-      return;
-    }
+  reRenderPage();
 
-    const channel = getRandomElement(videoChannels);
-    ipcRenderer.send('log', '快速视频地址：', channel.url);
-    ipcRenderer.send('create-fast-video-view', {
-      url: channel.url,
-    });
-    return;
-  };
+  task.runTask().then(() => showTaskControl());
 
-  const runTask = async () => {
-    await showScoreDetail();
-    await circleArticleTask();
-    await delay(1000);
-    await circleArticleTask();
-    await delay(1000);
-    await circleVideoTask();
-    await delay(1000);
-    await circleFastVideoTask();
-    await delay(1000);
-    await circleFastVideoTask();
-    // 任务面板控制
-    showTaskControl();
-    checkIsOver();
-  };
-
-  const checkIsOver = async () => {
-    const [
-      watchArticleTask,
-      watchVideoTask,
-      watchArticleTimeTask,
-      watchVideoTimeTask,
-    ] = await getUsableRateScoreTasks();
-    if (
-      isDone(watchArticleTask) &&
-      isDone(watchVideoTask) &&
-      isDone(watchArticleTimeTask) &&
-      isDone(watchVideoTimeTask)
-    ) {
-      ipcRenderer.send('close-task');
-      // 开启，让 notification 有提示音
-      ipcRenderer.send('set-app-audio-muted', false);
-      const n = new Notification('温馨提示', {
-        body: `${config.tipsPrefix}今日积分已经满啦`,
-        silent: false,
-        icon:
-          'https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture',
-      });
-
-      const $tips: HTMLElement = document.getElementById('task-tips');
-      $tips.innerHTML = '恭喜，今日积分已满';
-      $tips.style.color = '#ff0000';
-    }
-  };
-
-  ipcRenderer.on('watch-article', async () => {
-    showScoreDetail();
-    checkIsOver();
+  ipcRenderer.on('start-special-question', async () => {
+    console.log('start-special-question');
+    const data = await querySpecialQuestionList();
+    ipcRenderer.send('log', data);
   });
-
-  ipcRenderer.on('watch-video', () => {
-    showScoreDetail();
-    checkIsOver();
-  });
-
-  showScoreDetail();
-  // runTask();
 });

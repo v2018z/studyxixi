@@ -1,6 +1,6 @@
 import { domContentLoaded } from '../utils';
 import { queryDailyQuestions, submitDailyAnswer } from './api';
-import { DailyQuestionsT, DailySubmiT } from './types';
+import { DailyQuestionsT, DailySubmitT } from './types';
 import { ipcRenderer } from 'electron';
 
 export const runTask = async () => {
@@ -27,7 +27,7 @@ const buildCorrectAnswers = (questions: DailyQuestionsT[], uniqueId: string) => 
     };
   });
 
-  const submitParams: DailySubmiT = { questions: submitQuestions, uniqueId, usedTime: 3 * 60 };
+  const submitParams: DailySubmitT = { questions: submitQuestions, uniqueId, usedTime: 3 * 60 };
   return submitParams;
 }
 

@@ -38,7 +38,7 @@ domContentLoaded(async () => {
 		currentVideo = $video;
 
 		$video.addEventListener('durationchange', async () => {
-			ipcRenderer.send('log', '视频长度: ', $video.duration);
+			ipcRenderer.send('log', '视频时长: ', $video.duration);
 			const duration = $video.duration;
 			const minute = Math.floor(duration / 60);
 			if (minute < 3) {
