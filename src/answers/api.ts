@@ -78,7 +78,8 @@ export const querySpecialQuestions = async (params: { type: number, id: number }
     ...params,
     force: true,
   };
-  const res = await fetch(specialQuestionAPIUrl, {
+  const url  = `${specialQuestionAPIUrl}?${qs.stringify(payload)}`
+  const res = await fetch(url, {
     credentials: 'include',
     referrer: `${specialQuestionUrl}?id=${payload.id}`,
   });

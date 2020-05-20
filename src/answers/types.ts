@@ -25,10 +25,15 @@ export interface SpecialSubmitT {
   uniqueId: string,
 }
 
+export interface SpecialQuestionInfoT {
+  questions: DailyQuestionsT[],
+  uniqueId: string,
+}
+
 /**
  * 专项答题的题目
  */
-export interface SpecialQuestionInfoT {
+export interface SpecialQuestionsT {
   hasDescribe: true,
   questionDesc: string,
   questionId: number,
