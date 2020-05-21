@@ -171,10 +171,6 @@ export const createAnswerBrowser = (taskName: string) => {
   view.loadURL(myStudyUrl);
   view.webContents.audioMuted = true;
 
-  view.once('ready-to-show', () => {
-    view.show();
-  });
-
   view.on('closed', () => {
     view = null;
   });

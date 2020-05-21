@@ -6,6 +6,7 @@ import { querySpecialInfo, querySpecialQuestions, submitSpecialAnswer } from './
 import { SpecialQuestionInfoT, SpecialQuestionsT, SpecialQuestionAnswerT } from './types';
 import { getStrCount, domContentLoaded, notify } from '../utils';
 import { config } from '../config';
+import { showScoreDetail } from '../score';
 
 const getSpecialList = async () => {
   try {
@@ -111,6 +112,7 @@ domContentLoaded(() => {
   ipcRenderer.send('开始专项答题');
   runTask().then(() => { 
     notify({ body: `${config.tipsPrefix}，专项答题任务完成！`});
+    showScoreDetail();
   }).catch(() => {
   });
 })

@@ -1,7 +1,9 @@
-import { domContentLoaded } from '../utils';
+import { domContentLoaded, notify } from '../utils';
 import { queryDailyQuestions, submitDailyAnswer } from './api';
 import { DailyQuestionsT, DailySubmitT } from './types';
 import { ipcRenderer } from 'electron';
+import { config } from '../config';
+import { showScoreDetail } from '../score';
 
 export const runTask = async () => {
   try {
@@ -34,5 +36,9 @@ const buildCorrectAnswers = (questions: DailyQuestionsT[], uniqueId: string) => 
 
 domContentLoaded(() => {
   ipcRenderer.send('开始每日答题');
-  runTask();
+  runTask().then(() => { 
+    notify({ body: `${config.tipsPrefix}，每日答题任务完成！`});
+    showScoreDetail();
+  }).catch(() => {
+  });
 })
