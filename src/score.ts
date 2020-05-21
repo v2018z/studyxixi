@@ -28,7 +28,7 @@ const getTodayTotalScore = async () => {
 /**
  * 获取任务列表和积分信息
  */
-const getRateScore = async (): Promise<RateScoreT[]> => {
+export const getRateScore = async (): Promise<RateScoreT[]> => {
   const res = await fetch(rateScoreUrl , { credentials: 'include' });
   const rs = await res.json();
   if (rs.code !== 200) {

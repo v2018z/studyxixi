@@ -6,7 +6,7 @@ import { querySpecialInfo, querySpecialQuestions, submitSpecialAnswer } from './
 import { SpecialQuestionInfoT, SpecialQuestionsT, SpecialQuestionAnswerT } from './types';
 import { getStrCount, domContentLoaded, notify } from '../utils';
 import { config } from '../config';
-import { showScoreDetail } from '../score';
+import { showScoreDetail, getRateScore } from '../score';
 
 const getSpecialList = async () => {
   try {
@@ -108,10 +108,19 @@ const checkCorrectAnswer = (question: SpecialQuestionsT): any => {
   return { questionId, answers: rs };
 }
 
-domContentLoaded(() => {
-  ipcRenderer.send('开始专项答题');
+domContentLoaded(async () => {
+  ipcRenderer.send('log', '开始专项答题');
+
+  const rates = await getRateScore();
+  const rate = rates.find((r) => (r.ruleId === 4));
+
+  if (rate.currentScore !== 0) {
+    notify({ body: `${config.tipsPrefix}今日专项已答题完毕！`});
+    return;
+  }
+
   runTask().then(() => { 
-    notify({ body: `${config.tipsPrefix}，专项答题任务完成！`});
+    notify({ body: `${config.tipsPrefix}专项答题任务完成！`});
     showScoreDetail();
   }).catch(() => {
   });

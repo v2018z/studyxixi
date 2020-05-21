@@ -3,7 +3,7 @@ import { queryDailyQuestions, submitDailyAnswer } from './api';
 import { DailyQuestionsT, DailySubmitT } from './types';
 import { ipcRenderer } from 'electron';
 import { config } from '../config';
-import { showScoreDetail } from '../score';
+import { showScoreDetail, getRateScore } from '../score';
 
 export const runTask = async () => {
   try {
@@ -34,11 +34,20 @@ const buildCorrectAnswers = (questions: DailyQuestionsT[], uniqueId: string) => 
   return submitParams;
 }
 
-domContentLoaded(() => {
-  ipcRenderer.send('开始每日答题');
+domContentLoaded(async () => {
+  ipcRenderer.send('log', '开始每日答题');
+
+  const rates = await getRateScore();
+  const rate = rates.find((r) => (r.ruleId === 6));
+
+  if (rate.currentScore !== 0) {
+    notify({ body: `${config.tipsPrefix}今日已答题完毕！`});
+    return;
+  }
+
   runTask().then(() => { 
-    notify({ body: `${config.tipsPrefix}，每日答题任务完成！`});
+    notify({ body: `${config.tipsPrefix}每日答题任务完成！`});
     showScoreDetail();
   }).catch(() => {
   });
-})
+});
