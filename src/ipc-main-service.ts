@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, Menu, BrowserView } from 'electron';
+import { app, BrowserWindow, ipcMain, Menu, BrowserView, dialog } from 'electron';
 import { win, splash } from './browser-window';
 import * as path from 'path';
 import { delay } from './utils';
@@ -40,12 +40,22 @@ export const refreshMenu = (event: Event, rate: any) => {
         {
           label: '今日答题',
           click() {
+            dialog.showMessageBox({
+              type: 'question',
+              title: '温馨提示',
+              message:  `${config.tipsPrefix}今日答题任务执行中，请稍等！`
+            })
             createAnswerBrowser('day');
           }
         },
         {
           label: '专项答题',
           click() {
+            dialog.showMessageBox({
+              type: 'question',
+              title: '温馨提示',
+              message:  `${config.tipsPrefix}专项答题任务执行中，请稍等！`
+            });
             createAnswerBrowser('special');
           },
         },

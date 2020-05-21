@@ -1,7 +1,7 @@
 /**
  * 专项答题
  */
-import { ipcRenderer } from 'electron';
+import { ipcRenderer, remote } from 'electron';
 import { querySpecialInfo, querySpecialQuestions, submitSpecialAnswer } from './api';
 import { SpecialQuestionInfoT, SpecialQuestionsT, SpecialQuestionAnswerT } from './types';
 import { getStrCount, domContentLoaded, notify } from '../utils';

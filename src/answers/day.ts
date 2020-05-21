@@ -1,7 +1,7 @@
 import { domContentLoaded, notify } from '../utils';
 import { queryDailyQuestions, submitDailyAnswer } from './api';
 import { DailyQuestionsT, DailySubmitT } from './types';
-import { ipcRenderer } from 'electron';
+import { ipcRenderer, remote } from 'electron';
 import { config } from '../config';
 import { showScoreDetail, getRateScore } from '../score';
 
