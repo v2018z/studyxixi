@@ -30,6 +30,12 @@ export interface SpecialQuestionInfoT {
   uniqueId: string,
 }
 
+export interface SpecialQuestionAnswerT {
+  answerId: number,
+  label: string,
+  content: string,
+}
+
 /**
  * 专项答题的题目
  */
@@ -37,11 +43,7 @@ export interface SpecialQuestionsT {
   hasDescribe: true,
   questionDesc: string,
   questionId: number,
-  answers: {
-    answerId: number,
-    label: string,
-    content: string,
-  },
+  answers: SpecialQuestionAnswerT[],
   body: string,
   videoUrl: string,
   questionDescOrigin: string,

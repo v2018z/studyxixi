@@ -1,0 +1,38 @@
+  // 获取题目
+  //curl 'https://pc-proxy-api.xuexi.cn/api/exam/service/common/deduplicateRandomSearchV3?limit=10&activityCode=QUIZ_ALL&forced=true' \
+  -H 'Connection: keep-alive' \
+  -H 'Pragma: no-cache' \
+  -H 'Accept: application/json, text/plain, */*' \
+  -H 'uaToken: 122#ZX2JxE54EE+8hEpZy4pjEJponDJE7SNEEP7ZpJRBuDPpJFQLpCGwoHZDpJEL7SwBEyGZpJLlu4Ep+FQLpoGUEELon4yE7SNEEP7ZpERBuDPE+BQPpC76EJponDJLKMQEI1bNXDJ2tO9/a2Ie3P7Ny0VJaEBthL4AutitPNnAGN9tQpBgrCFh01YKDO1wVP1DqMf2/DLxnSp4vObEDtVZ8CL6JDEEyBfDqWv2EEpadBZ9kxgbELVrtFpUJDEbyo3mqW32E5pangL4uO0EDtVZ8CL6JNEEyBfDqMf2DEpxnSp1uOIEEIhr8Cpka4bEyBfG7g/qEWfA1S+dTPa2wDVIXnKIudxLJuwLfZt8PxBl/n91lod7n0BgZ/+1/+NFCO4EGkFKZ1zZXpCxM9tR3bt84zsZMS20ZfJ89CWh/dzEAS7oHrIVXjAqFjUcv51/W0VFgr+/oUUAMR46VQL0lkFMa2IDwyomWqKCgDAP1QVyyIsmG/Y5AAK0PVNWQR3qG/t+KkXTMkfWzUi6OAzvhcfqWH5oEawudz4yJR2SsRE27udTc1IoUK+f8Y1OQorJzBhSCuRKGUk++124VS6ABe0e+91WJoAOwCgTPjx49BgViMr/TwRtOB5mM+TG3I7ioq4kf11YWQloVh9YKyrwWyZfEMh5nnru7DJAhMx7xLq0dWagGmjzz2OmM3+U6LWEHufWHhFaz5m0t/8JgLTGBIKFg6mm2oh/XF7EQlPUwQGLxjTOINGXJAR1CLAfmS5=' \
+  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36' \
+  -H 'webUmidToken: TA80C4CB0AD49CE6380D1B31865CEF0EEF32215E78591E3B69618494194' \
+  -H 'Origin: https://pc.xuexi.cn' \
+  -H 'Sec-Fetch-Site: same-site' \
+  -H 'Sec-Fetch-Mode: cors' \
+  -H 'Sec-Fetch-Dest: empty' \
+  -H 'Referer: https://pc.xuexi.cn/points/exam-practice.html' \
+  -H 'Accept-Language: zh-CN,zh;q=0.9' \
+  -H 'Cookie: __UID__=bfb2a3f0-95e0-11ea-9fb9-57ce5295b02b; token=5c41622027e64c6a96e91cd5f56d7be1; exam_gray=1; aliyungf_tc=AQAAAAs+RA/XZQ0A7pP0ZVwIN1+jLgde; acw_tc=2760778415898135378791776ea203c0c8c73e861e04c94d2bc60c25150550; tmzw=1589824245467; zwfigprt=dbd32504450bbec2f8e77ef5d34fca4e; uaToken=122#ZX2JxE54EE+8hEpZy4pjEJponDJE7SNEEP7ZpJRBuDPpJFQLpCGwoHZDpJEL7SwBEyGZpJLlu4Ep+FQLpoGUEELon4yE7SNEEP7ZpERBuDPE+BQPpC76EJponDJLKMQEI1bNXDJ2tO9/a2Ie3P7Ny0VJaEBthL4AutitPNnAGN9tQpBgrCFh01YKDO1wVP1DqMf2/DLxnSp4vObEDtVZ8CL6JDEEyBfDqWv2EEpadBZ9kxgbELVrtFpUJDEbyo3mqW32E5pangL4uO0EDtVZ8CL6JNEEyBfDqMf2DEpxnSp1uOIEEIhr8Cpka4bEyBfG7g/qEWfA1S+dTPa2wDVIXnKIudxLJuwLfZt8PxBl/n91lod7n0BgZ/+1/+NFCO4EGkFKZ1zZXpCxM9tR3bt84zsZMS20ZfJ89CWh/dzEAS7oHrIVXjAqFjUcv51/W0VFgr+/oUUAMR46VQL0lkFMa2IDwyomWqKCgDAP1QVyyIsmG/Y5AAK0PVNWQR3qG/t+KkXTMkfWzUi6OAzvhcfqWH5oEawudz4yJR2SsRE27udTc1IoUK+f8Y1OQorJzBhSCuRKGUk++124VS6ABe0e+91WJoAOwCgTPjx49BgViMr/TwRtOB5mM+TG3I7ioq4kf11YWQloVh9YKyrwWyZfEMh5nnru7DJAhMx7xLq0dWagGmjzz2OmM3+U6LWEHufWHhFaz5m0t/8JgLTGBIKFg6mm2oh/XF7EQlPUwQGLxjTOINGXJAR1CLAfmS5=; webUmidToken=TA80C4CB0AD49CE6380D1B31865CEF0EEF32215E78591E3B69618494194' \
+  --compressed
+
+// dailyAnswresSubmitUrl payload
+/**
+ * curl 'https://pc-proxy-api.xuexi.cn/api/exam/service/practice/quizSubmitV3' \
+  -H 'Connection: keep-alive' \
+  -H 'Pragma: no-cache' \
+  -H 'Accept: application/json, text/plain, */*' \
+  -H 'uaToken: 122#YtbahD5ZEEJZdDpZy4pjEJponDJE7SNEEP7ZpJRBuDPpJFQLpCGwoHZDpJEL7SwBEyGZpJLlu4Ep+FQLpoGUEELon4yE7SNEEP7ZpERBuDPE+BNPpC76EJponDJLKMQEI1bNXDJ2tO9/a2Ie3P7Ny0VJaEBthL4AutitPNnAGN9tQpBgrCFh01YKDO1wVbmDqMf2G5pxnSp4NljEDtVZ8CL6JDEEyBfDqWv2EEpadBZ9kxgbELVrtFpUJDEbyo3mqW32E5pangL4uO0EDtVZ8CL6JNEEyBfDqMfbDEpxnSp1uOIEEIhr8Cpka4bEyBfG7g/qEWfA1S+dTPa2cEVGunSIudxLJuwLfhi9pvYZPEYCSNUfE6QioImLRpeZfxjulCJ9we1LAdcxF6lNFbZngLwnSzYuZM3sz1ZUvbtKin0DIpV8uWowPBY+TbsF3hOfL1m0bdq5QNx2RxAHS7XT3XCAQhlTexp+KFh4TH1OuMN7CHppB/dJLcO25szNL4qCsiwzZFaG6aCBZsYjwpThZ8kpFDKDWSDpgkxo1l5+KjxmtW9OG9q0/5jU06gkCpqFdiSRC2xm4hSMhNjnD0U3/8zHbpLf5f2HnKjShrPR0A6iqTC9/D6F1skflsp0WNiYAPHmVKSFkPs3UOd0VlYm4deoSWPQ/UmM9VXv4BcC8N1PnFg6p0Wp8RJmBnkk539dvv4H9ftBRlYIZPJxbCo8Hv6ilysDmfQPl1/4G7cJId+bsAcKcwloor9qB3nQZ0kz3O5DV9HC' \
+  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36' \
+  -H 'webUmidToken: TCCE43A053802507FCD24AA15FF9CC6EED67EED74EBDD729CC939050A45' \
+  -H 'Content-Type: application/json;charset=UTF-8' \
+  -H 'Origin: https://pc.xuexi.cn' \
+  -H 'Sec-Fetch-Site: same-site' \
+  -H 'Sec-Fetch-Mode: cors' \
+  -H 'Sec-Fetch-Dest: empty' \
+  -H 'Referer: https://pc.xuexi.cn/points/exam-practice.html' \
+  -H 'Accept-Language: zh-CN,zh;q=0.9' \
+  -H 'Cookie: __UID__=bfb2a3f0-95e0-11ea-9fb9-57ce5295b02b; token=5c41622027e64c6a96e91cd5f56d7be1; exam_gray=1; aliyungf_tc=AQAAAAs+RA/XZQ0A7pP0ZVwIN1+jLgde; acw_tc=2760778415898135378791776ea203c0c8c73e861e04c94d2bc60c25150550; uaToken=122#hLmKVD59EEJdz4pZy4pjEJponDJE7SNEEP7ZpJRBuDPpJFQLpCGwoHZDpJEL7SwBEyGZpJLlu4Ep+FQLpoGUEELon4yE7SNEEP7ZpERBuDPE+BNPpC76EJponDJLKMQEI1bNXDJ2tO9/a2Ie3P7Ny0VJaEBthL4AutitPNnAGN9tQpBgrCFh01YKDO1wVI1DqMf2BzpxnSp4hPjEDtVZ8CL6JDEEyBfDqWv2EEpadBZ9kxgbELVrtFpUJDEbyo3mqW32E5pangL4uO0EDtVZ8CL6JNEEyBfDqMfbDEpxnSp1uOIEEIhr8Cpka4bEyBfG7g/qEWfA1S+dTPa2FJVPFlIIudxLJuwLfhi9pvLZIdXTMa8IWlVyf/pSWpGcrnzplsANF487dpWE2f/+POhomtT5kYDECSNVVeoQpkO/qxau5tSgL7DK7TBENnI45YkwT6QpCjWysjXjXu6ShtDPm74vjKcFyZ/NDBdF+88l7/c4ycr0maQRJtaJ3923qN97tGKxQFXsIC9F3U9q4AJoMQ7OWs3MaXRY0xFUS74VAPGH2tt6RTkvy2fEUBsq1GqbI6Iuu0ms9aAEcZc11F3YW8muJ17kSVCwj4alU99Hw7q2W0eo6LmWDTOccwhrHIPBSUVQJgKoWdb9a+pAc1EqVw5MVXRjuOxHunG5v1TuBYCLQ67jdsyqL7N7dLlaXdYFU6pjfnyC1VPNub5=; webUmidToken=T03D21D4B3C6CE52EB8352035CDF5ACAFFEC98D81E41C8B3BA114B7A963; tmzw=1589824011178; zwfigprt=26b97fc99284201ffc6ee587bee4c09d' \
+  --data-binary '{"uniqueId":"365688362115182336","questions":[{"questionId":5145,"answers":[{"answerId":13373,"value":"病原体"}],"correct":true},{"questionId":1817,"answers":[{"answerId":5168,"value":"B"}],"correct":true},{"questionId":1948,"answers":[{"answerId":5544,"value":"A"},{"answerId":5545,"value":"B"},{"answerId":5546,"value":"C"},{"answerId":5547,"value":"D"}],"correct":true},{"questionId":2110,"answers":[{"answerId":5898,"value":"B"}],"correct":true},{"questionId":3290,"answers":[{"answerId":8610,"value":"教学方法"}],"correct":true},{"questionId":1300,"answers":[{"answerId":3698,"value":"A"}],"correct":true},{"questionId":5337,"answers":[{"answerId":13822,"value":"A"},{"answerId":13823,"value":"B"},{"answerId":13824,"value":"C"},{"answerId":13825,"value":"D"}],"correct":true},{"questionId":5265,"answers":[{"answerId":13624,"value":"并肩作战"}],"correct":true},{"questionId":2315,"answers":[{"answerId":6364,"value":"A"},{"answerId":6365,"value":"B"},{"answerId":6367,"value":"D"}],"correct":true},{"questionId":1791,"answers":[{"answerId":5096,"value":"A"},{"answerId":5097,"value":"B"},{"answerId":5098,"value":"C"},{"answerId":5099,"value":"D"}],"correct":true}],"usedTime":10475,"activityCode":"QUIZ_ALL"}' \
+  --compressed
+ 
+

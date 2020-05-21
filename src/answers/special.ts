@@ -19,7 +19,8 @@ const buildCorrectAnswers = (questions: SpecialQuestionsT[], uniqueId: string) =
   questions.map((question: SpecialQuestionsT) => {
     checkCorrectAnswer(question);
   });
-} 
+}
+
 
 const checkCorrectAnswer = (question: SpecialQuestionsT) => {
   const { 
@@ -32,5 +33,22 @@ const checkCorrectAnswer = (question: SpecialQuestionsT) => {
     questionDescOrigin 
   } = question;
 
+  const $correts = Array.from(new DOMParser().parseFromString(questionDesc, 'text/html')
+  .querySelectorAll('font.red, span.red')).map((red: HTMLElement) => red.innerText);
+
+
+  // 视频题
+  if (!hasDescribe && videoUrl) {
+
+  }
+
   // 选择题
+  if(answers.length > 1 && answers[0].label !== '') {
+    
+  }
+
+  // 填空题
+  if(answers[0].label === '') {
+
+  }
 }
