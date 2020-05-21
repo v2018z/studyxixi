@@ -120,5 +120,5 @@ domContentLoaded(async () => {
 
   showScoreDetail();
 
-  // task.runTask().then(() => showTaskControl());
+  task.runTask().then(() => showTaskControl());
 });
