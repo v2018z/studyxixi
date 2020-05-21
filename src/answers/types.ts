@@ -19,21 +19,22 @@ export interface DailyQuestionsT {
 
 export interface SpecialSubmitT {
   id: number,
-  type: 1,
+  type: number,
   questions: any[],
   usedTime: number,
   uniqueId: string,
 }
 
 export interface SpecialQuestionInfoT {
-  questions: DailyQuestionsT[],
+  questions: SpecialQuestionsT[],
   uniqueId: string,
 }
 
 export interface SpecialQuestionAnswerT {
   answerId: number,
-  label: string,
-  content: string,
+  label?: string,
+  content?: string,
+  value?: string,
 }
 
 /**

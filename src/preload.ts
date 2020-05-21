@@ -5,7 +5,8 @@ import { onLogin, isLoggedIn, getUserInfo } from './login';
 import { loginUrl, homeUrl, waitImageUrl } from './urls';
 import { config } from './config';
 import Task from './task';
-import { querySpecialQuestionList } from './answers/api';
+import { runTask } from './answers/special';
+import { showScoreDetail } from './score';
 
 const showTaskControl = async () => {
   let isShow = config.showTaskWindow;
@@ -44,8 +45,7 @@ const reRenderPage = async () => {
     // 关闭闪屏页
     ipcRenderer.send('close-win-splash');
 
-    (document.querySelector('.logged-link') as HTMLElement).style.fontSize =
-      '18px';
+    (document.querySelector('.logged-link') as HTMLElement).style.fontSize ='18px';
     (document.querySelector('.menu') as HTMLElement).style.minWidth = '100%';
 
     // 替换用户名
@@ -118,11 +118,7 @@ domContentLoaded(async () => {
 
   reRenderPage();
 
-  task.runTask().then(() => showTaskControl());
+  showScoreDetail();
 
-  ipcRenderer.on('start-special-question', async () => {
-    console.log('start-special-question');
-    const data = await querySpecialQuestionList();
-    ipcRenderer.send('log', data);
-  });
+  // task.runTask().then(() => showTaskControl());
 });

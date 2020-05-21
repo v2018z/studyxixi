@@ -57,4 +57,9 @@ export const specialQuestionListAPIUrl = 'https://pc-proxy-api.xuexi.cn/api/exam
 /**
  * 专项答题题目API
  */
-export const specialQuestionAPIUrl = 'https://pc-proxy-api.xuexi.cn/api/exam/service/detail/queryV3?type=1&id=188&forced=true';
+export const specialQuestionAPIUrl = 'https://pc-proxy-api.xuexi.cn/api/exam/service/detail/queryV3';
+
+/**
+ * 专项答题提交
+ */
+export const specialAnswerSubmitAPIUrl = 'https://pc-proxy-api.xuexi.cn/api/exam/service/detail/submitV3';

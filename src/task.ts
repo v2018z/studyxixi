@@ -1,7 +1,7 @@
 import { ipcRenderer } from 'electron';
 import { getArticleChannels, getVideoChannels } from './channels';
 import { getUsableRateScoreTasks, isDone, showScoreDetail } from './score';
-import { getRandomElement, delay } from './utils';
+import { getRandomElement, delay, notify } from './utils';
 import { config } from './config';
 
 export default class Task {
@@ -94,12 +94,8 @@ export default class Task {
       ipcRenderer.send('close-task');
       // 开启，让 notification 有提示音
       ipcRenderer.send('set-app-audio-muted', false);
-      const n = new Notification('温馨提示', {
-        body: `${config.tipsPrefix}今日积分已经满啦`,
-        silent: false,
-        icon:
-          'https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture',
-      });
+
+      notify({ body: `${config.tipsPrefix}今日积分已经满啦`});
 
       const $tips: HTMLElement = document.getElementById('task-tips');
       $tips.innerHTML = '恭喜，今日积分已满';

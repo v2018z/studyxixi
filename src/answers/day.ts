@@ -27,7 +27,8 @@ const buildCorrectAnswers = (questions: DailyQuestionsT[], uniqueId: string) => 
     };
   });
 
-  const submitParams: DailySubmitT = { questions: submitQuestions, uniqueId, usedTime: 3 * 60 };
+  const userTime = 180 + Math.floor(Math.random() * 180);
+  const submitParams: DailySubmitT = { questions: submitQuestions, uniqueId, usedTime: 3 * 60 + userTime };
   return submitParams;
 }
 

@@ -40,13 +40,13 @@ export const refreshMenu = (event: Event, rate: any) => {
         {
           label: '今日答题',
           click() {
-            createDailyAnswersBrowser();
+            createAnswerBrowser('day');
           }
         },
         {
           label: '专项答题',
           click() {
-            win.webContents.send('start-special-question');
+            createAnswerBrowser('special');
           },
         },
       ]
@@ -150,7 +150,7 @@ export const toggleTaskWindow = (isShow: boolean) => {
 /**
  * 创建答题窗口
  */
-export const createDailyAnswersBrowser = () => {
+export const createAnswerBrowser = (taskName: string) => {
   let view = new BrowserWindow({
     parent: win,
     closable: true,
@@ -164,13 +164,12 @@ export const createDailyAnswersBrowser = () => {
       nodeIntegration: false,
       // 禁用同源策略 (通常用来测试网站)
       webSecurity: true,
-      preload: path.join(__dirname, './answers/day'),
+      preload: path.join(__dirname, `./answers/${taskName}`),
       backgroundThrottling: false,
     },
   });
   view.loadURL(myStudyUrl);
   view.webContents.audioMuted = true;
-  view.webContents.openDevTools();
 
   view.once('ready-to-show', () => {
     view.show();

@@ -77,6 +77,11 @@
   resolved "https://registry.npm.taobao.org/@types/js-base64/download/@types/js-base64-2.3.1.tgz#c39f14f129408a3d96a1105a650d8b2b6eeb4168"
   integrity sha1-w58U8SlAij2WoRBaZQ2LK27rQWg=
 
+"@types/js-cookie@^2.2.6":
+  version "2.2.6"
+  resolved "http://172.16.164.133:4873/@types%2fjs-cookie/-/js-cookie-2.2.6.tgz#f1a1cb35aff47bc5cfb05cb0c441ca91e914c26f"
+  integrity sha512-+oY0FDTO2GYKEV0YPvSshGq9t7YozVkgvXLty7zogQNuCxBhT9/3INX9Q7H1aRZ4SUDRXAKlJuA4EA5nTt7SNw==
+
 "@types/lodash@^4.14.151":
   version "4.14.152"
   resolved "https://registry.npm.taobao.org/@types/lodash/download/@types/lodash-4.14.152.tgz#7e7679250adce14e749304cdb570969f77ec997c"
@@ -684,6 +689,11 @@ js-base64@2.5.2:
   version "2.5.2"
   resolved "https://registry.npm.taobao.org/js-base64/download/js-base64-2.5.2.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fjs-base64%2Fdownload%2Fjs-base64-2.5.2.tgz#313b6274dda718f714d00b3330bbae6e38e90209"
   integrity sha1-MTtidN2nGPcU0AszMLuubjjpAgk=
+
+js-cookie@^2.2.1:
+  version "2.2.1"
+  resolved "http://172.16.164.133:4873/js-cookie/-/js-cookie-2.2.1.tgz#69e106dc5d5806894562902aa5baec3744e9b2b8"
+  integrity sha512-HvdH2LzI/EAZcUwA8+0nKNtWHqS+ZmijLA30RwZA0bo7ToCckjK5MkGhjED9KoRcXO6BaGI3I9UIzSA1FKFPOQ==
 
 js-tokens@^4.0.0:
   version "4.0.0"
