@@ -1,3 +1,5 @@
+import { remote, Notification as Notify } from 'electron';
+
 export const delay = (time: number) => {
   return new Promise((resolve, reject) => {
 		setTimeout(() => {
@@ -32,9 +34,12 @@ export const getStrCount = (scrStr: string, armStr: string): number => {
 
 export const notify = (params: { body: string }) => {
 	// tslint:disable-next-line:no-unused-expression
-	return new Notification('温馨提示', {
+	const Notification = remote && remote.Notification || Notify;
+	
+	new Notification({
+		title: '温馨提示',
 		silent: false,
 		icon:'https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture',
 		...params,
-	});
+	}).show();
 }
