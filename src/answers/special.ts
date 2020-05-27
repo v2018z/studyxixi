@@ -10,9 +10,9 @@ import { showScoreDetail, getRateScore } from '../score';
 
 const getSpecialList = async () => {
   try {
-    const specialInfo = await querySpecialInfo();
+    const specialInfo = await querySpecialInfo(1, 200);
     const specialList = specialInfo.list;
-    const pendingList = specialList.filter((special: any) => special.status === 1);
+    const pendingList = specialList.filter((special: any) => special.status !== 2);
     return pendingList;
   } catch (error) {
     return [];
@@ -21,19 +21,26 @@ const getSpecialList = async () => {
 
 export const runTask = async () => {
   const specialList = await getSpecialList();
-  const special = specialList[0];
-  if (special) {
-    const params = { type: 1, id: special.id };
-    const questionInfo: SpecialQuestionInfoT = await querySpecialQuestions({ ...params });
-    const correctAnswer = buildCorrectAnswer({ id: params.id, type: params.type, questionInfo});
-    ipcRenderer.send('log', '构建答案完毕');
-    try {
-      const res = await submitSpecialAnswer(correctAnswer);
-      ipcRenderer.send('log', '提交专项答题答案成功', res);
-    } catch (error) {
-      console.log(error);
+  return new Promise(async (resolve, reject) => {
+    if (specialList.length === 0) {
+      reject({ code: 1, msg: '专项答题找不到题目'});
+      return;
     }
-  }
+    const special = specialList[0];
+    if (special) {
+      const params = { type: 1, id: special.id };
+      const questionInfo: SpecialQuestionInfoT = await querySpecialQuestions({ ...params });
+      const correctAnswer = buildCorrectAnswer({ id: params.id, type: params.type, questionInfo});
+      ipcRenderer.send('log', '构建答案完毕');
+      try {
+        const res = await submitSpecialAnswer(correctAnswer);
+        ipcRenderer.send('log', '提交专项答题答案成功', res);
+        resolve();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  })
 }
 
 const buildCorrectAnswer = (params: { id: number, type: number, questionInfo: SpecialQuestionInfoT}) => {
@@ -122,6 +129,8 @@ domContentLoaded(async () => {
   runTask().then(() => { 
     notify({ body: `${config.tipsPrefix}专项答题任务完成！`});
     showScoreDetail();
-  }).catch(() => {
+  }).catch((error) => {
+    ipcRenderer.send('log', error);
+    notify({ body: `${config.tipsPrefix}${error.msg}`});
   });
 })
