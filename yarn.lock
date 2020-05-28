@@ -127,6 +127,11 @@
   resolved "https://registry.npm.taobao.org/@types/node/download/@types/node-14.0.4.tgz#43a63fc5edce226bed106b31b875165256271107"
   integrity sha1-Q6Y/xe3OImvtEGsxuHUWUlYnEQc=
 
+"@types/node@^10.17.0":
+  version "10.17.0"
+  resolved "http://172.16.164.133:4873/@types%2fnode/-/node-10.17.0.tgz#537c61a1df699a8331c79dab2ccc2c8799873c66"
+  integrity sha512-wuJwN2KV4tIRz1bu9vq5kSPasJ8IsEjZaP1ZR7KlmdUZvGF/rXy8DmXOVwUD0kAtvtJ7aqMKPqUXC0NUTDbrDg==
+
 "@types/node@^12.0.12":
   version "12.12.41"
   resolved "https://registry.npm.taobao.org/@types/node/download/@types/node-12.12.41.tgz#cf48562b53ab6cf85d28dde95f1d06815af275c8"

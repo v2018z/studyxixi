@@ -28,7 +28,6 @@ const showTaskControl = async () => {
  */
 const reRenderPage = async () => {
   const userInfo = await getUserInfo();
-  ipcRenderer.send('log', userInfo);
 
   const observer = new MutationObserver(async () => {
     document
@@ -61,7 +60,7 @@ const reRenderPage = async () => {
 
     const $img = document.createElement('img');
     $img.id = 'waiting-img';
-    $img.src = waitImageUrl;
+    $img.src = `file://${path.join(__dirname, '../tasking.gif')}`;
     $img.style.display = 'block';
     $img.style.margin = '0 auto';
     $img.style.marginTop = '100px';

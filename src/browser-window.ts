@@ -19,7 +19,7 @@ const createWindow = () => {
       // 渲染线程使用node
       nodeIntegration: true,
       // 禁用同源策略 (通常用来测试网站)
-      webSecurity: true,
+      webSecurity: false,
       preload: path.join(__dirname, './preload.js'),
       backgroundThrottling: false,
       webviewTag: true,
