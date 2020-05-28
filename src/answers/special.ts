@@ -126,6 +126,8 @@ domContentLoaded(async () => {
     return;
   }
 
+  await(2000);
+
   runTask().then(() => { 
     notify({ body: `${config.tipsPrefix}专项答题任务完成！`});
     showScoreDetail();

@@ -1,6 +1,6 @@
 {
   "name": "sdudyxixi",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "author": "jax.xie <v2018z@163.com>",
   "main": "./dist/main.js",
   "license": "MIT",
@@ -12,7 +12,7 @@
     "start:mac": "npm run build && electron ./dist/main.js",
     "build:xixi": "npm run build && electron-packager . 希希的学习强国 --electron-version=8.2.5 --win --arch=x64 --overwrite --ignore=package-lock.json",
     "build:xuexi": "npm run build && electron-packager . 学习强国v1 --electron-version=8.2.5 --all --overwrite --ignore=node_modules --ignore=package-lock.json",
-    "build:dd": "electron-builder"
+    "build:dd": "npm run build && electron-builder"
   },
   "build": {
     "productName": "希希的学习强国",
