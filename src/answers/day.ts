@@ -14,6 +14,8 @@ export const runTask = async () => {
       const res = await submitDailyAnswer(submitPayload);
       ipcRenderer.send('log', '提交答案成功', res);
     } catch (error) {
+      ipcRenderer.send('log', '提交答案失败', error);
+      throw new Error(error);
     }
   } catch (error) {
     throw new Error('每日题目获取失败');
@@ -48,6 +50,7 @@ domContentLoaded(async () => {
   runTask().then(() => { 
     notify({ body: `${config.tipsPrefix}每日答题任务完成！`});
     showScoreDetail();
-  }).catch(() => {
+  }).catch((error) => {
+    notify({ body: error.message});
   });
 });

@@ -49,7 +49,7 @@ export const submitDailyAnswer = async(params: DailySubmitT) => {
   });
   const rs = await res.json();
   if (rs.code !== 200) {
-    throw new Error(rs.error);
+    throw new Error(rs.message);
   }
   return rs;
 }
@@ -126,7 +126,7 @@ export const submitSpecialAnswer = async(params: SpecialSubmitT) => {
   });
   const rs = await res.json();
   if (rs.code !== 200) {
-    throw new Error(rs.error);
+    throw new Error(rs.message);
   }
   return rs;
 }

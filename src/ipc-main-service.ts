@@ -173,6 +173,10 @@ export const createAnswerBrowser = (taskName: string) => {
   view.loadURL(myStudyUrl);
   view.webContents.audioMuted = true;
 
+  if (config.openDevTools) {
+    view.webContents.openDevTools();
+  }
+
   view.on('closed', () => {
     view = null;
   });

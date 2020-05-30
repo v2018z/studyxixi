@@ -23,7 +23,7 @@ export const runTask = async () => {
   const specialList = await getSpecialList();
   return new Promise(async (resolve, reject) => {
     if (specialList.length === 0) {
-      reject({ code: 1, msg: '专项答题找不到题目'});
+      reject(new Error('专项答题找不到题目'));
       return;
     }
     const special = specialList[0];
@@ -37,7 +37,7 @@ export const runTask = async () => {
         ipcRenderer.send('log', '提交专项答题答案成功', res);
         resolve();
       } catch (error) {
-        console.log(error);
+        reject(error);
       }
     }
   })
@@ -133,6 +133,6 @@ domContentLoaded(async () => {
     showScoreDetail();
   }).catch((error) => {
     ipcRenderer.send('log', error);
-    notify({ body: `${config.tipsPrefix}${error.msg}`});
+    notify({ body: error.message});
   });
 })
