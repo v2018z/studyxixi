@@ -11,18 +11,25 @@
     "start": "chcp 65001 && npm run build && electron ./dist/main.js",
     "start:mac": "npm run build && electron ./dist/main.js",
     "build:xixi": "npm run build && electron-packager . 希希的学习强国 --electron-version=8.2.5 --win --arch=x64 --overwrite --ignore=package-lock.json",
-    "build:xuexi": "npm run build && electron-packager . 学习强国v1 --electron-version=8.2.5 --all --overwrite --ignore=node_modules --ignore=package-lock.json",
-    "build:dd": "npm run build && electron-builder"
+    "build:xuexi": "npm run build && electron-packager . 学习强国v1 --electron-version=8.2.5 --all --overwrite --ignore=build --ignore=package-lock.json",
+    "build:jinji": "npm run build && electron-packager . 禁忌之V2.0 --electron-version=8.2.5 --all --overwrite --ignore=build --ignore=package-lock.json",
+    "build:mac": "npm run build && electron-builder",
+    "build:win": "npm run build && electron-builder --win --x64"
   },
   "build": {
-    "productName": "希希的学习强国",
+    "productName": "禁忌者V2.0",
     "appId": "org.jax.study.xixi",
     "directories": {
       "output": "build"
+    },
+    "mac": {
+      "target": ["dmg", "zip"]
+    },
+    "win": {
+      "target": ["nsis", "zip"]
     }
   },
   "devDependencies": {
-    "@types/jquery": "^3.3.38",
     "@types/js-base64": "^2.3.1",
     "@types/js-cookie": "^2.2.6",
     "@types/lodash": "^4.14.151",
