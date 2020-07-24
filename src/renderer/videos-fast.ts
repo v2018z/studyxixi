@@ -3,7 +3,7 @@ import {
   getRandomNumberBetween,
   getRandomElement,
   delay,
-} from './utils';
+} from '../utils';
 import { ipcRenderer } from 'electron';
 
 /**

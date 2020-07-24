@@ -1,4 +1,4 @@
-import { domContentLoaded, getRandomNumberBetween, getRandomElement, delay } from './utils';
+import { domContentLoaded, getRandomNumberBetween, getRandomElement, delay } from '../utils';
 import { ipcRenderer } from 'electron';
 
 /**

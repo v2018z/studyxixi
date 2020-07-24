@@ -1,12 +1,12 @@
 import { ipcRenderer, Menu } from 'electron';
 import * as path from 'path';
-import { domContentLoaded, delay } from './utils';
-import { onLogin, isLoggedIn, getUserInfo } from './login';
-import { loginUrl, homeUrl, waitImageUrl } from './urls';
-import { config } from './config';
-import Task from './task';
-import { runTask } from './answers/special';
-import { showScoreDetail } from './score';
+import { domContentLoaded, delay } from '../utils';
+import { onLogin, isLoggedIn, getUserInfo } from '../login';
+import { loginUrl, homeUrl, waitImageUrl } from '../urls';
+import { config } from '../config';
+import Task from '../task';
+import { runTask } from '../answers/special';
+import { showScoreDetail } from '../score';
 
 const showTaskControl = async () => {
   let isShow = config.showTaskWindow;

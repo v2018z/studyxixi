@@ -23,7 +23,7 @@ export const runTask = async () => {
   const specialList = await getSpecialList();
   return new Promise(async (resolve, reject) => {
     if (specialList.length === 0) {
-      reject(new Error('专项答题找不到题目'));
+      reject(new Error('专项答题没有新题目'));
       return;
     }
     const special = specialList[0];

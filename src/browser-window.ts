@@ -10,7 +10,6 @@ let splash: BrowserWindow;
 const createWindow = () => {
   if (win) return;
 
-
   win = new BrowserWindow({
     width: 800,
     height: 650,
@@ -61,7 +60,7 @@ const createWindow = () => {
   // 静音
   win.webContents.audioMuted = config.audioMuted;
 
-  // 移除菜单栏
+  // 初始化菜单栏
   Menu.setApplicationMenu(Menu.buildFromTemplate([{ label: '加载中...' }]));
 };
 
