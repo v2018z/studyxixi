@@ -17,7 +17,7 @@
     "build:win": "npm run build && electron-builder --win --x64"
   },
   "build": {
-    "productName": "禁忌者V2.0",
+    "productName": "学习强国V2.0",
     "appId": "org.jax.study.xixi",
     "directories": {
       "output": "build"
