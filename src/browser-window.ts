@@ -19,7 +19,7 @@ const createWindow = () => {
       nodeIntegration: true,
       // 禁用同源策略 (通常用来测试网站)
       webSecurity: false,
-      preload: path.join(__dirname, './preload.js'),
+      preload: path.join(__dirname, './renderer/preload.js'),
       backgroundThrottling: false,
       webviewTag: true,
     },
@@ -33,7 +33,7 @@ const createWindow = () => {
     alwaysOnTop: true, 
     webPreferences: {
       preload: path.join(__dirname, './splash.js'),
-    } 
+    },
   });
 
   splash.loadFile(path.join(__dirname, '../splash.html'));

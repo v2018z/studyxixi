@@ -60,7 +60,7 @@ const reRenderPage = async () => {
 
     const $img = document.createElement('img');
     $img.id = 'waiting-img';
-    $img.src = `file://${path.join(__dirname, '../tasking.gif')}`;
+    $img.src = `file://${path.join(__dirname, '../../tasking.gif')}`;
     $img.style.display = 'block';
     $img.style.margin = '0 auto';
     $img.style.marginTop = '100px';

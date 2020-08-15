@@ -100,7 +100,7 @@ export const createArticleView = async (event: Event, options: any) => {
     ...options,
     x: 0,
     url: options.url,
-    preload: path.join(__dirname, './articles.js'),
+    preload: path.join(__dirname, './renderer/articles.js'),
   });
   view.setBackgroundColor('#6f4f4f');
 };
@@ -110,7 +110,7 @@ export const createVideoView = async (event: Event, options: any) => {
     ...options,
     x: 250,
     url: options.url,
-    preload: path.join(__dirname, './videos.js'),
+    preload: path.join(__dirname, './renderer/videos.js'),
   });
   view.setBackgroundColor('#c8e1ff');
 };
@@ -120,7 +120,7 @@ export const createFastVideoView = async (event: Event, options: any) => {
     ...options,
     x: 500,
     url: options.url,
-    preload: path.join(__dirname, './videos-fast.js'),
+    preload: path.join(__dirname, './renderer/videos-fast.js'),
   });
   view.setBackgroundColor('#c8e1ff');
 };
