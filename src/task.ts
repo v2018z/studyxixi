@@ -102,7 +102,7 @@ export default class Task {
       $tips.style.color = '#ff0000';
 
       const $audio = document.createElement('audio');
-      $audio.src = `http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&per=10&spd=5&text=${config.tipsPrefix}积分已经满啦`;
+      $audio.src = `http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&per=10&spd=5&text=${config.tipsPrefix}，支付宝到账一百亿元，发财啦，哈哈哈哈哈哈哈哈`;
       $audio.style.visibility = 'hidden';
       document.body.appendChild($audio);
       $audio.play();
@@ -121,6 +121,13 @@ export default class Task {
     });
   }
 
+  answer() {
+    ipcRenderer.send('answer-the-question', 'day');
+    setTimeout(() => {
+      ipcRenderer.send('answer-the-question', 'special');
+    }, 30000);
+  }
+
   async runTask() {
     try {
       await this.initialize();
@@ -134,10 +141,11 @@ export default class Task {
       await this.startFastVideoTask();
       await delay(1000);
       await this.startFastVideoTask();
+      await delay(1000);
+      await this.answer();
       this.checkIsOver();
     } catch (error) {
       console.log(error);
     }
-    
   };
 }

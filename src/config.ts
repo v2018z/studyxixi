@@ -2,6 +2,6 @@ export const config = {
   isDEV: true,
   openDevTools: false,
   showTaskWindow: false,
-  tipsPrefix: '',
-  audioMuted: true,
+  tipsPrefix: '亲爱的希希同学，',
+  audioMuted: false,
 };
