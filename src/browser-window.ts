@@ -10,7 +10,6 @@ let splash: BrowserWindow;
 const createWindow = () => {
   if (win) return;
 
-
   win = new BrowserWindow({
     width: 800,
     height: 650,
@@ -19,8 +18,8 @@ const createWindow = () => {
       // 渲染线程使用node
       nodeIntegration: true,
       // 禁用同源策略 (通常用来测试网站)
-      webSecurity: true,
-      preload: path.join(__dirname, './preload.js'),
+      webSecurity: false,
+      preload: path.join(__dirname, './renderer/preload.js'),
       backgroundThrottling: false,
       webviewTag: true,
     },
@@ -34,7 +33,7 @@ const createWindow = () => {
     alwaysOnTop: true, 
     webPreferences: {
       preload: path.join(__dirname, './splash.js'),
-    } 
+    },
   });
 
   splash.loadFile(path.join(__dirname, '../splash.html'));
@@ -61,7 +60,7 @@ const createWindow = () => {
   // 静音
   win.webContents.audioMuted = config.audioMuted;
 
-  // 移除菜单栏
+  // 初始化菜单栏
   Menu.setApplicationMenu(Menu.buildFromTemplate([{ label: '加载中...' }]));
 };
 

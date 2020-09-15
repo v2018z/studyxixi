@@ -1,6 +1,19 @@
 import { ipcRenderer } from 'electron';
 import { delay } from './utils';
 import { config } from './config';
+import { userInfoUrl, examIndexUrl } from './urls';
+
+export const getUserInfo = async () => {
+  const res = await fetch(userInfoUrl , { 
+    credentials: 'include',
+    referrer: examIndexUrl, 
+  });
+  const rs = await res.json();
+  if (rs.code !== 200) {
+    throw new Error(rs.error);
+  }
+  return rs.data;
+}
 
 export const onLogin = async () => {
   // 隐藏页面无用的元素
@@ -23,6 +36,9 @@ export const onLogin = async () => {
   });
 
   const observer = new MutationObserver(() => {
+	// 关闭闪屏页
+	ipcRenderer.send('close-win-splash');
+	
     const text = `${config.tipsPrefix}打开APP扫它👆`;
     const $loginText = document.querySelector('.ddlogintext');
     $loginText.innerHTML = text;

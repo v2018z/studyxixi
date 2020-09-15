@@ -3,7 +3,7 @@ import {
   getRandomNumberBetween,
   getRandomElement,
   delay,
-} from './utils';
+} from '../utils';
 import { ipcRenderer } from 'electron';
 
 /**
@@ -43,8 +43,7 @@ domContentLoaded(async () => {
     currentVideo = $video;
 
     $video.addEventListener('durationchange', () => {
-      console.log('视频长度');
-      ipcRenderer.send('log', '视频长度: ', $video.duration);
+      ipcRenderer.send('log', '视频时长: ', $video.duration);
       const duration = $video.duration;
       $video.currentTime = duration > 20 ? duration - 10 : duration;
     });

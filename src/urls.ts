@@ -14,6 +14,52 @@ export const todayTotalScoreUrl = 'https://pc-api.xuexi.cn/open/api/score/today/
 
 export const rateScoreUrl = 'https://pc-api.xuexi.cn/open/api/score/today/queryrate';
 
-export const waitImageUrl = 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1589660455914&di=38c7b930e494c85214312148db1498c4&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fecb84e509ddf8806b44abf6db20fa46e7017fb4414c87-jWQlIM_fw658';
+export const waitImageUrl = 'http://hbimg.b0.upaiyun.com/ecb84e509ddf8806b44abf6db20fa46e7017fb4414c87-jWQlIM_fw658';
 
-export const dailyAnswersUrl = 'https://pc.xuexi.cn/points/exam-practice.html';
+export const userInfoUrl = 'https://pc-api.xuexi.cn/open/api/user/info';
+
+
+/**
+ * 我要答题页面
+ */
+export const examIndexUrl = 'https://pc.xuexi.cn/points/exam-index.html';
+
+/**
+ * 每日答题html页面
+ */
+export const dailyQuestionUrl = 'https://pc.xuexi.cn/points/exam-practice.html';
+
+/**
+ * 每日答题题目及答案API
+ */
+export const dailyQuestionQueryAPIUrl = 'https://pc-proxy-api.xuexi.cn/api/exam/service/common/deduplicateRandomSearchV3?limit=10&activityCode=QUIZ_ALL&forced=true'
+
+/**
+ * 每日答题提交
+ */
+export const dailyAnswerSubmitAPIUrl = 'https://pc-proxy-api.xuexi.cn/api/exam/service/practice/quizSubmitV3';
+
+/**
+ * 专项答题列表html页面
+ */
+export const specialQuestionListUrl = 'https://pc.xuexi.cn/points/exam-paper-list.html';
+
+/**
+ * 专项答题题目首页
+ */
+export const specialQuestionUrl = 'https://pc.xuexi.cn/points/exam-paper-detail.html';
+
+/**
+ * 专项答题列表接口API
+ */
+export const specialQuestionListAPIUrl = 'https://pc-proxy-api.xuexi.cn/api/exam/service/paper/pc/list';
+
+/**
+ * 专项答题题目API
+ */
+export const specialQuestionAPIUrl = 'https://pc-proxy-api.xuexi.cn/api/exam/service/detail/queryV3';
+
+/**
+ * 专项答题提交
+ */
+export const specialAnswerSubmitAPIUrl = 'https://pc-proxy-api.xuexi.cn/api/exam/service/detail/submitV3';

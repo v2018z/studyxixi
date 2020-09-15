@@ -4,12 +4,14 @@ type stateTypes = {
   splashWaiting: boolean,
   articleChannels: any[];
   videoChannels: any[];
+  userInfo: any;
 };
 
 const state: stateTypes = {
   splashWaiting: false,
   articleChannels: [],
   videoChannels: [],
+  userInfo: Object.create(null),
 };
 
 export const splashComplete = () => {
@@ -35,3 +37,7 @@ export const getArticleChannels = () => {
 export const getVideoChannels = () => {
   return state.videoChannels;
 };
+
+export const setUserInfo = (userInfo: any) => {
+  state.userInfo = { ...userInfo };
+}
