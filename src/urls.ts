@@ -32,7 +32,7 @@ export const dailyQuestionUrl = 'https://pc.xuexi.cn/points/exam-practice.html';
 /**
  * 每日答题题目及答案API
  */
-export const dailyQuestionQueryAPIUrl = 'https://pc-proxy-api.xuexi.cn/api/exam/service/common/deduplicateRandomSearchV3?limit=10&activityCode=QUIZ_ALL&forced=true'
+export const dailyQuestionQueryAPIUrl = 'https://pc-proxy-api.xuexi.cn/api/exam/service/common/deduplicateRandomSearchV3?limit=5&activityCode=QUIZ_ALL&forced=true'
 
 /**
  * 每日答题提交
@@ -63,3 +63,4 @@ export const specialQuestionAPIUrl = 'https://pc-proxy-api.xuexi.cn/api/exam/ser
  * 专项答题提交
  */
 export const specialAnswerSubmitAPIUrl = 'https://pc-proxy-api.xuexi.cn/api/exam/service/detail/submitV3';
+

@@ -15,7 +15,7 @@ export default class Task {
   async initialize() {
     const articleChannels = this.articleChannels = await getArticleChannels();
     const videoChannels = this.videoChannels = await getVideoChannels();
-  
+
     ipcRenderer.send('set-article-channels', articleChannels);
     ipcRenderer.send('set-video-channels', videoChannels);
   }
@@ -27,18 +27,18 @@ export default class Task {
       watchArticleTimeTask,
       ,
     ] = await getUsableRateScoreTasks();
-  
+
     if (isDone(watchArticleTask) && isDone(watchArticleTimeTask)) {
       return;
     }
-  
+
     const channel = getRandomElement(this.articleChannels);
     ipcRenderer.send('log', '文章地址：', channel.url);
     ipcRenderer.send('create-article-view', {
       url: channel.url,
     });
   };
-  
+
   async startVideoTask() {
     const [
       ,
@@ -50,14 +50,14 @@ export default class Task {
     if (isDone(watchVideoTask) && isDone(watchVideoTimeTask)) {
       return;
     }
-  
+
     const channel = getRandomElement(this.videoChannels);
     ipcRenderer.send('log', '视频地址：', channel.url);
     ipcRenderer.send('create-video-view', {
       url: channel.url,
     });
   };
-  
+
   async startFastVideoTask() {
     const [
       ,
@@ -65,11 +65,11 @@ export default class Task {
       ,
       watchVideoTimeTask,
     ] = await getUsableRateScoreTasks();
-  
+
     if (isDone(watchVideoTask) && isDone(watchVideoTimeTask)) {
       return;
     }
-  
+
     const channel = getRandomElement(this.videoChannels);
     ipcRenderer.send('log', '快速视频地址：', channel.url);
     ipcRenderer.send('create-fast-video-view', {
@@ -102,7 +102,7 @@ export default class Task {
       $tips.style.color = '#ff0000';
 
       const $audio = document.createElement('audio');
-      $audio.src = `http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&per=10&spd=5&text=${config.tipsPrefix}，支付宝到账一百亿元，发财啦，哈哈哈哈哈哈哈哈`;
+      $audio.src = `http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&per=10&spd=5&text=${config.tipsPrefix}，学习强国积分任务已完成`;
       $audio.style.visibility = 'hidden';
       document.body.appendChild($audio);
       $audio.play();
@@ -114,7 +114,7 @@ export default class Task {
       showScoreDetail();
       this.checkIsOver();
     });
-  
+
     ipcRenderer.on('watch-video', () => {
       showScoreDetail();
       this.checkIsOver();
