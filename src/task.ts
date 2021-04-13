@@ -124,6 +124,9 @@ export default class Task {
   answer() {
     ipcRenderer.send('answer-the-question', 'day');
     setTimeout(() => {
+      ipcRenderer.send('answer-the-question', 'weekly');
+    }, 30000);
+    setTimeout(() => {
       ipcRenderer.send('answer-the-question', 'special');
     }, 30000);
   }

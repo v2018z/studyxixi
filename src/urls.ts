@@ -1,5 +1,7 @@
 export const homeUrl = 'https://www.xuexi.cn/';
 
+export const pcHomeUrl = 'https://pc.xuexi.cn/';
+
 export const loginUrl = 'https://pc.xuexi.cn/points/login.html';
 
 export const articleUrl = 'https://www.xuexi.cn/98d5ae483720f701144e4dabf99a4a34/5957f69bffab66811b99940516ec8784.html';
@@ -64,3 +66,24 @@ export const specialQuestionAPIUrl = 'https://pc-proxy-api.xuexi.cn/api/exam/ser
  */
 export const specialAnswerSubmitAPIUrl = 'https://pc-proxy-api.xuexi.cn/api/exam/service/detail/submitV3';
 
+/**
+ *每周答题题目列表html页面
+ */
+ export const weeklyQuestionListUrl = 'https://pc.xuexi.cn/points/exam-weekly-list.html';
+
+ /**
+ * 专项答题题目首页
+ */
+export const weeklyQuestionUrl = 'https://pc.xuexi.cn/points/exam-paper-detail.html';
+
+/**
+ * 每周答题题目API
+ */
+export const weeklyQuestionListAPIUrl = 'https://pc-proxy-api.xuexi.cn/api/exam/service/practice/pc/weekly/more'
+
+/**
+ * 每周答题题目API
+ */
+export const weeklyQuestionAPIUrl = 'https://pc-proxy-api.xuexi.cn/api/exam/service/detail/queryV3'
+
+export const weeklyAnswerSubmitAPIUrl = 'https://pc-proxy-api.xuexi.cn/api/exam/service/practice/weekPracticeSubmitV3';
