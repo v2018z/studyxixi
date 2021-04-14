@@ -49,3 +49,5 @@ export interface SpecialQuestionsT {
   videoUrl: string,
   questionDescOrigin: string,
 }
+
+export interface WeeklySubmitT extends SpecialSubmitT {}

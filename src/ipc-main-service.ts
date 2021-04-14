@@ -45,6 +45,13 @@ export const refreshMenu = (event: Event, rate: any) => {
           }
         },
         {
+          label: '每周答题',
+          click() {
+            notify({ body: `${config.tipsPrefix}每周答题任务执行中，请稍等！`});
+            createAnswerBrowser('weekly');
+          }
+        },
+        {
           label: '专项答题',
           click() {
             notify({ body: `${config.tipsPrefix}专项答题任务执行中，请稍等！`});
