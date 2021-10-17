@@ -1,6 +1,13 @@
 # 学习强国 自动学习
 
-> 为了学习 electron 和 ts 顺手做的。喜欢的话记得点颗星星蛤～
+## 下载链接
+[Windows](https://github.com/v2018z/xueXiQiangguo/tree/main/build/Windows) 
+
+[MacOS](https://github.com/v2018z/xueXiQiangguo/tree/main/build/MacOS)
+
+[Linux 桌面版](https://github.com/v2018z/xueXiQiangguo/tree/main/build/Linux)
+#
+## 作者有话说
 
 本软件为公益性质，永久免费使用
 
@@ -9,3 +16,7 @@
 不接受任何捐款
 
 禁止各种形式的商用
+
+#
+
+> 为了学习 electron 和 ts 顺手做的。喜欢的话记得点颗星星蛤～

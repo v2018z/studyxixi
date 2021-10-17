@@ -125,10 +125,10 @@ export default class Task {
     ipcRenderer.send('answer-the-question', 'day');
     setTimeout(() => {
       ipcRenderer.send('answer-the-question', 'weekly');
-    }, 30000);
+    }, 60000);
     setTimeout(() => {
       ipcRenderer.send('answer-the-question', 'special');
-    }, 30000);
+    }, 60000);
   }
 
   async runTask() {

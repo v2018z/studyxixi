@@ -35,7 +35,7 @@ export const runTask = async () => {
       try {
         const res = await submitSpecialAnswer(correctAnswer);
         ipcRenderer.send('log', '提交专项答题答案成功', res);
-        resolve();
+        resolve(res);
       } catch (error) {
         reject(error);
       }
@@ -55,14 +55,14 @@ const buildCorrectAnswer = (params: { id: number, type: number, questionInfo: Sp
 
 
 const checkCorrectAnswer = (question: SpecialQuestionsT): any => {
-  const { 
-    hasDescribe, 
-    questionDesc, 
-    questionId, 
-    answers, 
-    body, 
-    videoUrl, 
-    questionDescOrigin 
+  const {
+    hasDescribe,
+    questionDesc,
+    questionId,
+    answers,
+    body,
+    videoUrl,
+    questionDescOrigin
   } = question;
   const $corrects = Array.from(new DOMParser().parseFromString(questionDesc, 'text/html')
   .querySelectorAll('font[color=red]')).map((red: HTMLElement) => red.innerText);
@@ -126,7 +126,7 @@ domContentLoaded(async () => {
     return;
   }
 
-  runTask().then(() => { 
+  runTask().then(() => {
     notify({ body: `${config.tipsPrefix}专项答题任务完成！`});
     showScoreDetail();
   }).catch((error) => {

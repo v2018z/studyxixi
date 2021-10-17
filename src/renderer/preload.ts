@@ -49,7 +49,7 @@ const reRenderPage = async () => {
 
     // 替换用户名
     if (userInfo.nick) {
-      (document.querySelector('.menu .login') as HTMLElement).style.width = '400px'; 
+      (document.querySelector('.menu .login') as HTMLElement).style.width = '400px';
       document.querySelector('.logged-text > span').innerHTML = `${userInfo.nick}，欢迎您`
     }
 

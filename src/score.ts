@@ -1,5 +1,6 @@
 import { todayTotalScoreUrl, totalScoreUrl, rateScoreUrl } from './urls';
 import { ipcRenderer } from 'electron';
+import { retry } from './utils';
 
 /**
  * 获取总积分
@@ -29,12 +30,19 @@ const getTodayTotalScore = async () => {
  * 获取任务列表和积分信息
  */
 export const getRateScore = async (): Promise<RateScoreT[]> => {
-  const res = await fetch(rateScoreUrl , { credentials: 'include' });
-  const rs = await res.json();
-  if (rs.code !== 200) {
-    throw new Error(rs.error);
-  }
-  return rs.data.dayScoreDtos;
+	const action = async () => {
+		const res = await fetch(rateScoreUrl , { credentials: 'include' });
+		const rs = await res.json();
+		if (rs.code !== 200) {
+			throw new Error(rs.error);
+		}
+		if (rs.data && rs.data.dayScoreDtos) {
+			return rs.data.dayScoreDtos;
+		}
+		throw new Error('任务列表获取失败');
+	}
+	// @ts-ignore
+	return retry(action, 10, 2000);
 }
 
 export interface RateScoreT {
@@ -47,7 +55,7 @@ export interface RateScoreT {
 
 /**
  * 单任务完成
- * @param rateScore 
+ * @param rateScore
  */
 export const isDone = (rateScore: RateScoreT) => {
   return rateScore.currentScore >= rateScore.dayMaxScore;

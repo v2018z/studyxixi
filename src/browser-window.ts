@@ -25,12 +25,12 @@ const createWindow = () => {
     },
   });
 
-  splash = new BrowserWindow({ 
-    width: 800, 
-    height: 650, 
-    transparent: true, 
-    frame: false, 
-    alwaysOnTop: true, 
+  splash = new BrowserWindow({
+    width: 800,
+    height: 650,
+    transparent: true,
+    frame: false,
+    alwaysOnTop: true,
     webPreferences: {
       preload: path.join(__dirname, './splash.js'),
     },
