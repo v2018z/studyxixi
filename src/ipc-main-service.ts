@@ -188,3 +188,8 @@ export const createAnswerBrowser = (taskName: string) => {
     view = null;
   });
 }
+
+export const relaunch = () => {
+	app.relaunch();
+	app.exit(0);
+}

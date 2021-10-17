@@ -16,10 +16,21 @@ const showTaskControl = async () => {
   $control.style.cursor = 'pointer';
   document.querySelector('.menu .logged-text').appendChild($control);
 
+	const $retry = document.createElement('span');
+	$retry.innerHTML = `【重启任务】`;
+  $retry.style.cursor = 'pointer';
+	$retry.style.color = '#ff0000';
+  document.querySelector('.menu .logged-text').appendChild($retry);
+
   $control.addEventListener('click', () => {
     isShow = !isShow;
     ipcRenderer.send('toggle-task-window', isShow);
     $control.innerHTML = `【${isShow ? '隐藏任务面板' : '显示任务面板'}】`;
+  });
+
+	$retry.addEventListener('click', () => {
+		console.log('吃v红旗')
+    ipcRenderer.send('relaunch');
   });
 };
 

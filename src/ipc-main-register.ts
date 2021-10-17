@@ -1,7 +1,7 @@
 import { ipcMain } from 'electron';
-import { log, refreshMenu, createArticleView, createVideoView, watchVideo, 
-    closeTask, watchArticle, toggleTaskWindow, createFastVideoView, setAppAudioMuted, 
-    closeWinPlash, setSplashComplete, createAnswerBrowser,
+import { log, refreshMenu, createArticleView, createVideoView, watchVideo,
+    closeTask, watchArticle, toggleTaskWindow, createFastVideoView, setAppAudioMuted,
+    closeWinPlash, setSplashComplete, createAnswerBrowser, relaunch
 } from './ipc-main-service';
 import { setArticleChannels, setVideoChannels, getArticleChannels, getVideoChannels } from './store';
 
@@ -39,3 +39,8 @@ ipcMain.on('answer-the-question', (event, questionType: string) => createAnswerB
 ipcMain.handle('get-article-channels', getArticleChannels);
 
 ipcMain.handle('get-video-channels', getVideoChannels);
+
+ipcMain.on('relaunch', (event) => {
+	closeTask();
+	relaunch();
+});
