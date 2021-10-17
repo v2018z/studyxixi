@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, Menu, BrowserView, dialog } from 'electron';
+import { app, BrowserWindow, ipcMain, Menu, BrowserView, dialog, MessageBoxOptions } from 'electron';
 import { win, splash } from './browser-window';
 import * as path from 'path';
 import { delay, notify } from './utils';
@@ -192,4 +192,10 @@ export const createAnswerBrowser = (taskName: string) => {
 export const relaunch = () => {
 	app.relaunch();
 	app.exit(0);
+}
+
+export const showMessageBox = (options: MessageBoxOptions) => {
+	return dialog.showMessageBox(win, {
+		...options,
+	});
 }

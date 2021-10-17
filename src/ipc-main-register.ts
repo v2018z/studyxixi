@@ -1,7 +1,7 @@
-import { ipcMain } from 'electron';
+import { ipcMain, MessageBoxOptions } from 'electron';
 import { log, refreshMenu, createArticleView, createVideoView, watchVideo,
     closeTask, watchArticle, toggleTaskWindow, createFastVideoView, setAppAudioMuted,
-    closeWinPlash, setSplashComplete, createAnswerBrowser, relaunch
+    closeWinPlash, setSplashComplete, createAnswerBrowser, relaunch, showMessageBox
 } from './ipc-main-service';
 import { setArticleChannels, setVideoChannels, getArticleChannels, getVideoChannels } from './store';
 
@@ -44,3 +44,7 @@ ipcMain.on('relaunch', (event) => {
 	closeTask();
 	relaunch();
 });
+
+ipcMain.handle('show-dialog-message', (event, options: MessageBoxOptions) => {
+	return showMessageBox(options);
+})

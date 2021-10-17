@@ -1,4 +1,4 @@
-import { ipcRenderer, Menu } from 'electron';
+import { ipcRenderer, Menu, MessageBoxReturnValue, } from 'electron';
 import * as path from 'path';
 import { domContentLoaded, delay } from '../utils';
 import { onLogin, isLoggedIn, getUserInfo } from '../login';
@@ -15,7 +15,7 @@ const showTaskControl = async (task: Task) => {
   $control.style.cursor = 'pointer';
   document.querySelector('.menu .logged-text').appendChild($control);
 
-	const $retry = document.createElement('span');
+	const $retry = document.createElement('a');
 	$retry.innerHTML = `【重启任务】`;
   $retry.style.cursor = 'pointer';
 	$retry.style.color = '#ff0000';
@@ -27,11 +27,20 @@ const showTaskControl = async (task: Task) => {
     $control.innerHTML = `【${isShow ? '隐藏任务面板' : '显示任务面板'}】`;
   });
 
-	$retry.addEventListener('click', () => {
-		const $tips: HTMLElement = document.getElementById('task-tips');
-		$tips.innerHTML = '任务已重启，自动在后台执行, 不要着急';
-		$tips.style.color = '#000000';
-		task.retry();
+	$retry.addEventListener('click', async() => {
+		const result: MessageBoxReturnValue = await ipcRenderer.invoke('show-dialog-message', {
+			type:'info',
+			title:'重启任务',
+			message:'任务卡住？试试重启任务吧',
+			detail: '不要频繁使用，防止完成任务时间过长',
+			buttons:['确定','取消'],
+		})
+		if (result.response == 0) {
+			const $tips: HTMLElement = document.getElementById('task-tips');
+			$tips.innerHTML = '任务已重启，自动在后台执行, 不要着急';
+			$tips.style.color = '#000';
+			task.retry();
+		}
   });
 };
 
