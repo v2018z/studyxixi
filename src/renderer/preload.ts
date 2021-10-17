@@ -5,10 +5,9 @@ import { onLogin, isLoggedIn, getUserInfo } from '../login';
 import { loginUrl, homeUrl, waitImageUrl } from '../urls';
 import { config } from '../config';
 import Task from '../task';
-import { runTask } from '../answers/special';
 import { showScoreDetail } from '../score';
 
-const showTaskControl = async () => {
+const showTaskControl = async (task: Task) => {
   let isShow = config.showTaskWindow;
   (document.querySelector('.menu .login') as HTMLElement).style.width = '100%';
   const $control = document.createElement('span');
@@ -29,8 +28,10 @@ const showTaskControl = async () => {
   });
 
 	$retry.addEventListener('click', () => {
-		console.log('吃v红旗')
-    ipcRenderer.send('relaunch');
+		const $tips: HTMLElement = document.getElementById('task-tips');
+		$tips.innerHTML = '任务已重启，自动在后台执行, 不要着急';
+		$tips.style.color = '#000000';
+		task.retry();
   });
 };
 
@@ -130,5 +131,5 @@ domContentLoaded(async () => {
 
   showScoreDetail();
 
-  task.runTask().then(() => showTaskControl());
+  task.runTask().then(() => showTaskControl(task));
 });

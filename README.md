@@ -1,9 +1,12 @@
 # 学习强国 自动学习
 
 ## 下载链接
-[Windows](https://github.com/v2018z/xueXiQiangguo/tree/main/build/Windows) 
 
 [MacOS](https://github.com/v2018z/xueXiQiangguo/tree/main/build/MacOS)
+
+[Windows](https://github.com/v2018z/xueXiQiangguo/tree/main/build/Windows) 
+
+[Windows 免安装版](https://github.com/v2018z/xueXiQiangguo/tree/main/build/WindowsFree) 
 
 [Linux 桌面版](https://github.com/v2018z/xueXiQiangguo/tree/main/build/Linux)
 #

@@ -1,6 +1,6 @@
 {
   "name": "sdudyxixi",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "author": "jax.xie <v2018z@163.com>",
   "main": "./dist/main.js",
   "license": "MIT",
@@ -15,7 +15,7 @@
     "build:linux": "npm run build && electron-builder --linux"
   },
   "build": {
-    "productName": "学习强国V2.0",
+    "productName": "学习强国V2.1",
     "appId": "org.jax.study.xixi",
     "directories": {
       "output": "build"

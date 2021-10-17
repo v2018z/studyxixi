@@ -151,4 +151,9 @@ export default class Task {
       console.log(error);
     }
   };
+
+	retry() {
+		ipcRenderer.send('close-task');
+		this.runTask();
+	}
 }
