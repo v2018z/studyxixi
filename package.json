@@ -21,10 +21,10 @@
       "output": "build"
     },
     "mac": {
-      "target": ["dmg", "zip"]
+      "target": ["dmg"]
     },
     "win": {
-      "target": ["nsis", "zip"]
+      "target": ["nsis", "portable"]
     },
     "linux": {
       "target": [
