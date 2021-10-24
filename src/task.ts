@@ -122,13 +122,15 @@ export default class Task {
   }
 
   answer() {
-    ipcRenderer.send('answer-the-question', 'day');
+		setTimeout(() => {
+			ipcRenderer.send('answer-the-question', 'day');
+		}, 60000);
     setTimeout(() => {
       ipcRenderer.send('answer-the-question', 'weekly');
-    }, 60000);
+    }, 120000);
     setTimeout(() => {
       ipcRenderer.send('answer-the-question', 'special');
-    }, 60000);
+    }, 180000);
   }
 
   async runTask() {

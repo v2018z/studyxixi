@@ -14,7 +14,7 @@ export const totalScoreUrl = 'https://pc-api.xuexi.cn/open/api/score/get';
 
 export const todayTotalScoreUrl = 'https://pc-api.xuexi.cn/open/api/score/today/query';
 
-export const rateScoreUrl = 'https://pc-api.xuexi.cn/open/api/score/today/queryrate';
+export const rateScoreUrl = 'https://pc-proxy-api.xuexi.cn/api/score/days/listScoreProgress?sence=score&deviceType=2';
 
 export const waitImageUrl = 'http://hbimg.b0.upaiyun.com/ecb84e509ddf8806b44abf6db20fa46e7017fb4414c87-jWQlIM_fw658';
 

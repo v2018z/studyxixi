@@ -36,21 +36,21 @@ export const getRateScore = async (): Promise<RateScoreT[]> => {
 		if (rs.code !== 200) {
 			throw new Error(rs.error);
 		}
-		if (rs.data && rs.data.dayScoreDtos) {
-			return rs.data.dayScoreDtos;
+		if (rs.data && rs.data.taskProgress) {
+			return rs.data.taskProgress;
 		}
 		throw new Error('任务列表获取失败');
 	}
 	// @ts-ignore
-	return retry(action, 10, 2000);
+	return retry(action, 10, 5000);
 }
 
 export interface RateScoreT {
-	ruleId: number;
-	name: string;
-	desc: string;
+	title: string;
+	ruleDesc: string;
 	currentScore: number;
 	dayMaxScore: number;
+	taskCode: string[];
 }
 
 /**
@@ -70,7 +70,7 @@ export const getUsableRateScoreTasks = async () => {
   ['视听学习', 2],
   ['文章时长', 1002],
   ['视听学习时长', 1003]].map(([name, ruleId]) => {
-    return rate.find(r => r.name === name) || rate.find(r => r.ruleId === ruleId);
+    return rate.find(r => r.title === name) || rate.find(r => r.taskCode.includes(`${ruleId}`));
   });
 }
 
@@ -82,7 +82,7 @@ export const showScoreDetail = async () => {
   const todayTotalScore = await getTodayTotalScore();
   const time = new Date().toLocaleString('zh-CN', { hour12: false });
   const taskScore = (await getUsableRateScoreTasks()).map((rate) => {
-    return `${rate.name} 积分：${rate.currentScore} / ${rate.dayMaxScore}`;
+    return `${rate.title} 积分：${rate.currentScore} / ${rate.dayMaxScore}`;
   });
   const log = `${time} 总积分：${totalScore} 今日积分：${todayTotalScore} ${taskScore.join(' ')}`;
   ipcRenderer.send('log', log);

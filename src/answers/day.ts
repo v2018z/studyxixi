@@ -40,14 +40,14 @@ domContentLoaded(async () => {
   ipcRenderer.send('log', '开始每日答题');
 
   const rates = await getRateScore();
-  const rate = rates.find((r) => (r.ruleId === 6));
+  const rate = rates.find((r) => (r.taskCode.includes('6')));
 
   if (rate.currentScore !== 0) {
     notify({ body: `${config.tipsPrefix}今日已答题完毕！`});
     return;
   }
 
-  runTask().then(() => { 
+  runTask().then(() => {
     notify({ body: `${config.tipsPrefix}每日答题任务完成！`});
     showScoreDetail();
   }).catch((error) => {

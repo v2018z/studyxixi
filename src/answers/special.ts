@@ -119,7 +119,7 @@ domContentLoaded(async () => {
   ipcRenderer.send('log', '开始专项答题');
 
   const rates = await getRateScore();
-  const rate = rates.find((r) => (r.ruleId === 4));
+  const rate = rates.find((r) => (r.taskCode.includes('4')));
 
   if (rate.currentScore !== 0) {
     notify({ body: `${config.tipsPrefix}今日专项已答题完毕！`});
