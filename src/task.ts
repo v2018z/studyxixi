@@ -7,6 +7,7 @@ import { config } from './config';
 export default class Task {
   private articleChannels: any[] = [];
   private videoChannels: any[] = [];
+	public answerRunning: boolean = false;
 
   constructor() {
     this.watch();
@@ -121,10 +122,14 @@ export default class Task {
     });
   }
 
-  answer() {
+	dayAnswer() {
 		setTimeout(() => {
 			ipcRenderer.send('answer-the-question', 'day');
 		}, 60000);
+	}
+
+  answer() {
+		this.answerRunning = true;
     setTimeout(() => {
       ipcRenderer.send('answer-the-question', 'weekly');
     }, 120000);
@@ -146,8 +151,8 @@ export default class Task {
       await this.startFastVideoTask();
       await delay(1000);
       await this.startFastVideoTask();
-      await delay(1000);
-      await this.answer();
+			await delay(1000);
+			await this.dayAnswer();
       this.checkIsOver();
     } catch (error) {
       console.log(error);

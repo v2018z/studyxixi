@@ -15,6 +15,8 @@ const showTaskControl = async (task: Task) => {
   $control.style.cursor = 'pointer';
   document.querySelector('.menu .logged-text').appendChild($control);
 
+	renderAutoAnswer(task);
+
 	const $retry = document.createElement('a');
 	$retry.innerHTML = `【重启任务】`;
   $retry.style.cursor = 'pointer';
@@ -44,6 +46,38 @@ const showTaskControl = async (task: Task) => {
   });
 };
 
+const renderAutoAnswer = async (task: Task) => {
+	const answerAutoState = localStorage.getItem('answer-auto-state');
+	const isAuto = answerAutoState != '2';
+	const $auto = document.getElementById('answer-auto') || document.createElement('a');
+	$auto.id = 'answer-auto';
+	let h = isAuto ? `【取消自动答题】` : '【自动答题】';
+	$auto.innerHTML = h;
+  $auto.style.cursor = 'pointer';
+  document.querySelector('.menu .logged-text').appendChild($auto);
+
+	if (isAuto && !task.answerRunning) {
+		task.answer();
+	}
+
+	async function t() {
+		const result: MessageBoxReturnValue = await ipcRenderer.invoke('show-dialog-message', {
+			type:'info',
+			title:'关于自动答题',
+			message:`${'是否要' + h} ${isAuto ? '\n（每日答题不受影响）': ''}`,
+			detail: isAuto ? '下次启动生效' : '',
+			buttons:['确定','取消'],
+		})
+		if (result.response == 0) {
+			localStorage.setItem('answer-auto-state',  isAuto ? '2' : '1');
+			renderAutoAnswer(task);
+			$auto.removeEventListener('click',t);
+		}
+	}
+	$auto.addEventListener('click',t);
+}
+
+
 /**
  * 重新绘制页面
  */
@@ -53,7 +87,7 @@ const reRenderPage = async () => {
   const observer = new MutationObserver(async () => {
     document
       .querySelectorAll('.xuexi, .menu-list, .search-icon, section, footer')
-      .forEach((element: HTMLElement) => {
+      .forEach((element: any) => {
         if (element.style.display === 'none') return;
         element.style.display = 'none';
       });
