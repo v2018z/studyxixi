@@ -1,6 +1,6 @@
 {
   "name": "sdudyxixi",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "author": "jax.xie <v2018z@163.com>",
   "main": "./dist/main.js",
   "license": "MIT",
@@ -24,7 +24,7 @@
       "target": ["dmg"]
     },
     "win": {
-      "target": ["nsis", "portable"]
+      "target": ["portable"]
     },
     "linux": {
       "target": [

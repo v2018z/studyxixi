@@ -1,6 +1,6 @@
 export const config = {
   isDEV: true,
-  openDevTools: true,
+  openDevTools: false,
   showTaskWindow: false,
   tipsPrefix: '',
   audioMuted: false,
