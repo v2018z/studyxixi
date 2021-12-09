@@ -101,12 +101,6 @@ export default class Task {
       const $tips: HTMLElement = document.getElementById('task-tips');
       $tips.innerHTML = '恭喜，今日积分已满';
       $tips.style.color = '#ff0000';
-
-      const $audio = document.createElement('audio');
-      $audio.src = `http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&per=10&spd=5&text=${config.tipsPrefix}，学习强国积分任务已完成`;
-      $audio.style.visibility = 'hidden';
-      document.body.appendChild($audio);
-      // $audio.play();
     }
   };
 
