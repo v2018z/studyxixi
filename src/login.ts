@@ -4,9 +4,9 @@ import { config } from './config';
 import { userInfoUrl, examIndexUrl } from './urls';
 
 export const getUserInfo = async () => {
-  const res = await fetch(userInfoUrl , { 
+  const res = await fetch(userInfoUrl , {
     credentials: 'include',
-    referrer: examIndexUrl, 
+    referrer: examIndexUrl,
   });
   const rs = await res.json();
   if (rs.code !== 200) {
@@ -16,13 +16,23 @@ export const getUserInfo = async () => {
 }
 
 export const onLogin = async () => {
+	const $layoutBody = document.querySelector('.layout-body') as HTMLElement;
   // 隐藏页面无用的元素
   document.body.style.overflow = 'hidden';
   document
-    .querySelectorAll('.layout-header, .redflagbox, .layout-footer')
+    .querySelectorAll('.layout-header, .redflagbox, .layout-footer, .oath')
     .forEach((element: HTMLElement) => {
       element.style.display = 'none';
     });
+
+	$layoutBody.classList.remove('login-page-bg');
+
+	document
+		.querySelectorAll('.login-page-bg')
+		.forEach((element: HTMLElement) => {
+			console.log(element)
+			element.style.backgroundImage = '';
+		});
 
   // 调整页面样式
   [document.documentElement, document.body].forEach((element: HTMLElement) => {
@@ -35,17 +45,27 @@ export const onLogin = async () => {
     element.style.backgroundSize = 'cover';
   });
 
-  const observer = new MutationObserver(() => {
-	// 关闭闪屏页
-	ipcRenderer.send('close-win-splash');
-	
-    const text = `${config.tipsPrefix}打开APP扫它👆`;
+	const callback = () => {
+		const text = `${config.tipsPrefix}打开APP扫它👆`;
     const $loginText = document.querySelector('.ddlogintext');
-    $loginText.innerHTML = text;
-    ($loginText as HTMLElement).style.color = '#fff';
+		if ($loginText) {
+			$loginText.innerHTML = text;
+			($loginText as HTMLElement).style.color = '#fff';
+		}
+		// 关闭闪屏页
+		ipcRenderer.send('close-win-splash');
+	}
+
+  const observer = new MutationObserver(() => {
+    callback();
+		observer.disconnect();
   });
 
-  observer.observe(document.querySelector('.layout-body'), { childList: true });
+  observer.observe($layoutBody, { subtree: true, childList: true });
+
+	setTimeout(() => {
+		callback();
+	}, 8000);
 };
 
 export const isLoggedIn = () => {
