@@ -6,11 +6,12 @@ import { retry } from './utils';
  * 获取总积分
  */
 const getTotalScore = async () => {
-  const res = await fetch(totalScoreUrl , { credentials: 'include' });
+  const res = await fetch(`${totalScoreUrl}?_t=${+new Date()}` , { credentials: 'include' });
   const rs = await res.json();
   if (rs.code !== 200) {
     throw new Error(rs.error);
   }
+	console.log(rs);
   return rs.data.score;
 }
 

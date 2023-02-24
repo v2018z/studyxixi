@@ -1,6 +1,6 @@
 {
   "name": "sdudyxixi",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "author": "jax.xie <v2018z@163.com>",
   "main": "./dist/main.js",
   "license": "MIT",
@@ -11,7 +11,7 @@
     "start": "chcp 65001 && npm run build && electron ./dist/main.js",
     "start:mac": "npm run build && electron ./dist/main.js",
     "build:mac": "npm run build && electron-builder",
-    "build:win": "npm run build && electron-builder --win --x64",
+    "build:win": "npm run build && electron-builder --win",
     "build:linux": "npm run build && electron-builder --linux"
   },
   "build": {

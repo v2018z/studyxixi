@@ -175,4 +175,8 @@ domContentLoaded(async () => {
   showScoreDetail();
 
   task.runTask().then(() => showTaskControl(task));
+
+	setTimeout(() => {
+		location.href = location.href;
+	}, 60 * 1000 * 60 * 6);
 });

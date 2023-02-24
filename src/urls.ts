@@ -10,9 +10,9 @@ export const videoUrl = 'https://www.xuexi.cn/4426aa87b0b64ac671c96379a3a8bd26/d
 
 export const myStudyUrl = 'https://pc.xuexi.cn/points/my-study.html';
 
-export const totalScoreUrl = 'https://pc-api.xuexi.cn/open/api/score/get';
+export const totalScoreUrl = 'https://pc-proxy-api.xuexi.cn/delegate/score/get';
 
-export const todayTotalScoreUrl = 'https://pc-api.xuexi.cn/open/api/score/today/query';
+export const todayTotalScoreUrl = 'https://pc-proxy-api.xuexi.cn/delegate/score/today/query';
 
 export const rateScoreUrl = 'https://pc-proxy-api.xuexi.cn/api/score/days/listScoreProgress?sence=score&deviceType=2';
 
