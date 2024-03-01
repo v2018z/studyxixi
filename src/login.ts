@@ -16,6 +16,7 @@ export const getUserInfo = async () => {
 }
 
 export const onLogin = async () => {
+	await delay(1500);
 	const $layoutBody = document.querySelector('.layout-body') as HTMLElement;
   // 隐藏页面无用的元素
   document.body.style.overflow = 'hidden';
