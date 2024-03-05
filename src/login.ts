@@ -18,9 +18,9 @@ export const getUserInfo = async () => {
 
 export const onLogin = async () => {
 
-	const elementObserver = new ElementObserver('.layout-body', callback);
+	const elementObserver = new ElementObserver('.ddlogintext', callback);
 
-	function callback() {
+	async function callback() {
 		const $layoutBody = document.querySelector('.layout-body') as HTMLElement;
 		// 隐藏页面无用的元素
 		document.body.style.overflow = 'hidden';
@@ -51,6 +51,7 @@ export const onLogin = async () => {
 		});
 		const text = `${config.tipsPrefix}打开APP扫它👆`;
 		const $loginText = document.querySelector('.ddlogintext');
+		console.log($loginText, 'loginText')
 		if ($loginText) {
 			$loginText.innerHTML = text;
 			($loginText as HTMLElement).style.color = '#fff';
